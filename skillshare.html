@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skillshare </title>
+  <style>
+    :root{
+      --glass: rgba(255,255,255,0.08);
+      --glass-2: rgba(255,255,255,0.12);
+      --accent: #f4c095;
+      --text: #fff;
+      --muted: #dcdcdc;
+      --card-radius: 16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, rgba(10,10,10,0.6), rgba(20,20,30,0.6)), url('https://skills.network/portals/landing/hackathon-ppl.jpg') center/cover fixed no-repeat;
+      color:var(--text);
+      min-height:100vh;
+      padding:28px;
+    }
+
+    header{ text-align:center; margin-bottom:18px; }
+    header h1{ margin:0; font-size:32px; }
+    header p{ margin:6px 0 0; color:var(--muted) }
+
+    .container{max-width:1200px;margin:18px auto;}
+    .main-row{display:flex;gap:20px;align-items:flex-start}
+    .left-col{flex:1}
+    .right-col{width:420px;flex-shrink:0}
+
+    .cards{display:flex;gap:16px;flex-wrap:wrap}
+    .card{ background:var(--glass); border-radius:var(--card-radius); padding:14px; width:220px; box-shadow:0 8px 30px rgba(0,0,0,0.45); cursor:pointer; transition:transform .18s; text-align:center;}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:86px;height:86px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+    .card h3{margin:6px 0;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    #subSection{ margin-top:18px; display:none; background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:16px;border-radius:12px; }
+    #subSection h2{margin:0 0 12px}
+    .subgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .sub{ background:var(--glass-2); padding:12px; border-radius:10px; cursor:pointer; }
+    .sub h4{margin:0 0 6px}
+    .sub p{margin:0;color:var(--muted);font-size:13px}
+
+
+
+    .modal{ position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:9999;padding:18px; }
+    .modal .box{ width:100%;max-width:980px;background:#0f0f12;border-radius:12px;padding:16px;color:var(--text);max-height:86vh;overflow:auto }
+    .modal .box h2{margin-top:0}
+    .close-x{float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+    .resource{background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;margin-top:10px}
+    .video-embed{width:100%;height:360px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:10px}
+    img.detail-img{width:100%;max-height:320px;object-fit:cover;border-radius:8px;margin-top:8px}
+
+    @media(max-width:980px){ .main-row{flex-direction:column} .right-col{width:100%} .card{width:48%} }
+    @media(max-width:560px){ .card{width:100%} }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skillshare </h1>
+</header>
+
+<div class="container">
+  <div class="main-row">
+    <div class="left-col">
+      <div class="cards" id="mainCards"></div>
+
+      <div id="subSection">
+        <h2 id="subTitle">Bo'lim: —</h2>
+        <div class="subgrid" id="subGrid"></div>
+        <div style="margin-top:12px">
+          <button class="btn back" onclick="closeSub()">⬅ Orqaga</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="detail-panel" id="detailPanel">
+        <div class="content" id="detailContent">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close-x" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle"></h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+
+
+const CONTENT = {
+  "Game development": [
+
+  
+  { id:"g1", title:"Game Developer kim?", img:"https://static.vecteezy.com/system/resources/thumbnails/057/284/061/small_2x/game-developer-working-on-3d-character-design-in-creative-studio-at-night-photo.jpg", short:"Oʻyin ishlab chiqaruvchi — vazifalari va nimani bilishi kerakligi.", long:`<https://i.pinimg.com/236x/f5/99/e6/f599e676ff12aa2bb743773b103ea6ee.jpg" alt="">
+      <p><strong>Game developerlar — bu o‘yinlarni yaratuvchi dasturchilar va ijodkorlar. Ular video o‘yinlarning texnik, vizual va interaktiv qismlarini yaratadi. Lekin “game developer” deganda faqat kod yozadigan odam emas — o‘yin ishlab chiqish bir nechta mutaxassisliklardan iborat jamoaviy ish.</p>
+      <h4>Asosiy game developer turlari:</h4><ul><li>🧠 Game designer - O'yin dizayneri</li><li>💻 Game Programmer - O‘yin dasturchisi</li><li>🎨 Game Artist - Grafik rassom </li><li>🎧 Sound Designer - Tovush dizayneri</li><li>📖 Writer / Narrative Designer - Syujet / hikoya yozuvchi </li><li>🧩Level Designer - O'yin darajalarini loyhalashtiruvchi </li><li>🧪 QA tester - xatolarni topuvchi </li><li>🧭 Producer / Project Manager - Jamoani boshqaruvchi</li> </ul>
+      <h4>Mashhur game developer kompaniyalar:</h4><ul><li>🎮 Naughty Dog — The Last of Us, Uncharted</li><li>🕹️ Rockstar Games — GTA, Red Dead Redemption</li><li>🧙♂️ CD Projekt Red — The Witcher, Cyberpunk 2077</li><li>⚔️ FromSoftware — Elden Ring, Dark Souls</li><li>🧩 Nintendo, Ubisoft, EA, Epic Games</li>
+      <h4>Asosiy ko'nikmalar:</h4><ul><li>C#, C++, JavaScript</li><li>Unity, Unreal, Godot</li><li>Matematika, fizika</li><li>Git, debugging</li></ul>
+      <h4>Ko'nikmalarni o'rganish davomida yaratish mumkin bo'lgan loyihalar step by step:</h4><ol><li>Mini interaktiv o‘yinlar</li><li>2D platformer o‘yinlari</li><li>Puzzle yoki mantiqiy o‘yinlar</li><li>Fizika va harakatga asoslangan o‘yinlar</li><li>3D loyihalar</li><li>AI va dushman logikasi</li><li>RPG yoki Adventure tipidagi o‘yinlar</li><li>Simulation yoki tycoon o‘yinlar</li><li>Multiplayer yoki onlayn o‘yinlar</li><li>Yakuniy portfolio o‘yini</li></ol>` },
+{
+  id: "g2",
+  title: "Oʻyin tarixi",
+  img: "https://res.cloudinary.com/exaud-website/image/upload/v1722513732/nokia_snake_game_1024x426_6ee108650d.webp",
+  short: "O‘yinlar insoniyat bilan birga paydo bo‘lgan. Eng qadimgi o‘yinlar miloddan avvalgi 3000-yillarga borib taqaladi.",
+  long: `
+  <p>O‘yinlarning tarixi insoniyatning madaniy va texnologik rivojlanishi bilan chambarchas bog‘liq. Ular dastlab marosim, hordiq va muloqot shakli sifatida paydo bo‘lgan, keyinchalik esa inson tafakkurining bir qismi sifatida shakllangan.</p>
+
+  <h4>1️⃣ Qadimgi davr o‘yinlari</h4>
+  <ul>
+    <li><strong>Senet (Misr)</strong> – miloddan avvalgi 3000-yillarda o‘ynalgan eng qadimgi stol o‘yini. U taxtacha va toshlardan iborat bo‘lgan, hayot va o‘lim ramzini ifodalagan.</li>
+    <li><strong>Go (Xitoy)</strong> – miloddan avvalgi 2000-yillarda yaratilgan strategik o‘yin. Maqsad – raqib hududini egallash. Bugungi kunda ham juda mashhur.</li>
+    <li><strong>Shaxmat (Hindiston)</strong> – miloddan avvalgi VI asrda “Chaturanga” nomi bilan yaratilgan. Keyinchalik Fors, Arab mamlakatlari va Yevropaga tarqalgan.</li>
+    <li><strong>Mancala (Afrika)</strong> – donlar bilan o‘ynaladigan strategik o‘yin bo‘lib, mantiq va tez fikrlashni rivojlantirgan.</li>
+  </ul>
+
+  <h4>2️⃣ O‘rta asrlar va yangi davr o‘yinlari</h4>
+  <ul>
+    <li><strong>Karta o‘yinlari</strong> – dastlab Xitoyda yaratilgan, keyin Yevropaga tarqalgan (XIV asr). Karta o‘yinlari mantiq, strategiya va omadni uyg‘unlashtirgan.</li>
+    <li><strong>Domino va shashka</strong> – xalq orasida keng tarqalgan va tafakkurni rivojlantiruvchi o‘yinlar.</li>
+    <li><strong>Sport o‘yinlari</strong> – qadimgi Olimpiya o‘yinlari (miloddan avvalgi 776-yil) zamonaviy sport o‘yinlariga asos bo‘lgan.</li>
+  </ul>
+
+  <h4>3️⃣ 20-asr – Texnologiyalar davri</h4>
+  <ul>
+    <li><strong>1940–1950-yillar:</strong> birinchi elektron o‘yinlar yaratildi. Masalan, <em>“Nim”</em> (1940) va <em>“OXO”</em> (1952).</li>
+    <li><strong>1970–1980-yillar:</strong> <em>“Pong”</em>, <em>“Pac-Man”</em>, <em>“Space Invaders”</em> kabi arcade o‘yinlar butun dunyoda mashhurlikka erishdi.</li>
+    <li><strong>1990-yillar:</strong> kompyuter va konsollar (Nintendo, Sega, Sony PlayStation) o‘yin sanoatini butunlay o‘zgartirdi.</li>
+  </ul>
+
+  <h4>4️⃣ 21-asr – Raqamli inqilob davri</h4>
+  <ul>
+    <li><strong>Mobil o‘yinlar:</strong> <em>“Snake”</em> (Nokia), <em>“Angry Birds”</em>, <em>“Clash of Clans”</em> kabi o‘yinlar mobil texnologiyalar bilan birga rivojlandi.</li>
+    <li><strong>Onlayn o‘yinlar:</strong> <em>“World of Warcraft”</em>, <em>“Fortnite”</em>, <em>“PUBG”</em>, <em>“Minecraft”</em> kabi o‘yinlar millionlab o‘yinchilarni birlashtirdi.</li>
+    <li><strong>VR (Virtual Reality)</strong> va <strong>AR (Augmented Reality)</strong> texnologiyalari o‘yinlarni yangi darajaga olib chiqdi, foydalanuvchiga real muhitda interaktiv tajriba yaratdi.</li>
+  </ul>
+
+  <p>🎮 Bugungi kunda o‘yinlar nafaqat hordiq vositasi, balki ta’lim, psixologiya, sport va hatto iqtisodiyotning ajralmas qismiga aylangan. Ular inson tafakkuri, kreativlik va texnologiyaning uyg‘unlashgan shaklidir.</p>
+  `
+},
+
+{
+  id: "g3",
+  title: "Kitoblar va resurslar",
+  img: "https://i.ytimg.com/vi/LNwfOCuOgUY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBE_4KoLzPG-p8fVsahRVxGev-N_A",
+  short: "The Art of Game Design, Unity Learn va boshqa foydali manbalar o‘yin yaratuvchilar uchun eng muhim qo‘llanmalardan.",
+  long: `
+  <p><strong>📚 Kitoblar:</strong></p>
+  <ul>
+    <li><em>The Art of Game Design: A Book of Lenses</em> – Jesse Schell tomonidan yozilgan, o‘yin dizaynining barcha jihatlarini chuqur tahlil qiluvchi asar.</li>
+    <li><em>Game Programming Patterns</em> – Robert Nystrom tomonidan yozilgan, o‘yin dasturlashda eng samarali kod tuzilmalari va naqshlarini tushuntiradi.</li>
+    <li><em>Rules of Play</em> – Katie Salen va Eric Zimmerman tomonidan, o‘yin nazariyasi, mexanikasi va dizayn etikasi haqida ilmiy manba.</li>
+    <li><em>Level Up! The Guide to Great Video Game Design</em> – Scott Rogers tomonidan yozilgan, amaliy o‘yin dizayni uchun mukammal qo‘llanma.</li>
+    <li><em>Introduction to Game Development</em> – Steve Rabin tahriri ostida yozilgan, dasturlashdan tortib grafik tizimlargacha bo‘lgan barcha yo‘nalishlarni o‘z ichiga oladi.</li>
+  </ul>
+
+  <p><strong>💻 Onlayn o‘quv platformalar:</strong></p>
+  <ul>
+    <li><strong>Unity Learn</strong> – Unity dvigateli bilan ishlashni bosqichma-bosqich o‘rgatuvchi rasmiy manba.</li>
+    <li><strong>Unreal Engine Courses</strong> – Epic Games tomonidan taqdim etilgan bepul darsliklar va video kurslar.</li>
+    <li><strong>Coursera & Udemy</strong> – Game Design, 3D modeling, va Game Development yo‘nalishlarida professional kurslar mavjud.</li>
+    <li><strong>GDC (Game Developers Conference) Talks</strong> – dunyodagi eng yirik o‘yin ishlab chiquvchilar anjumanidagi videodarslar va tajribalar.</li>
+    <li><strong>Itch.io Learn</strong> – mustaqil (indie) o‘yin yaratuvchilar uchun amaliy tajriba va loyihalar platformasi.</li>
+  </ul>
+
+  <p><strong>🧰 Foydali vositalar:</strong></p>
+  <ul>
+    <li><strong>Godot Engine</strong> – bepul va ochiq manbali o‘yin dvigateli, Python’ga o‘xshash GDScript tilidan foydalanadi.</li>
+    <li><strong>Blender</strong> – 3D modellashtirish, animatsiya va vizual effektlar uchun kuchli vosita.</li>
+    <li><strong>Aseprite</strong> – 2D pixel-art o‘yinlar yaratishda mashhur dastur.</li>
+    <li><strong>Figma / Photoshop</strong> – o‘yin interfeysi va dizayn elementlarini ishlab chiqishda qulay.</li>
+  </ul>
+
+  <p><strong>🎮 Qo‘shimcha ilhom manbalari:</strong></p>
+  <ul>
+    <li><em>Indie Game: The Movie</em> – mustaqil o‘yin yaratuvchilarning yo‘lini yorituvchi hujjatli film.</li>
+    <li><em>Game Maker’s Toolkit</em> – YouTube’dagi o‘yin dizayni tahlili bo‘yicha eng mashhur kanal.</li>
+    <li><em>Extra Credits</em> – o‘yin tarixlari, mexanika va dizayn g‘oyalari haqida qisqa va foydali videolar.</li>
+  </ul>
+
+  <p>🎯 Ushbu kitoblar va resurslar orqali har kim o‘z o‘yin yaratish yo‘lini boshlashi, g‘oyadan tortib tayyor loyihagacha yetaklovchi bilimlarni egallashi mumkin.</p>
+  `
+},
+ 
+ {
+  id: "g4",
+  title: "YouTube va darslar",
+  img: "https://img.gazeta.ru/files3/704/20910704/74-pic_32ratio_600x400-600x400-19603.jpg",
+  short: "Brackeys, Game Maker’s Toolkit, GDC Talks va boshqa YouTube kanallari orqali o‘yin yaratishni o‘rganing.",
+  long: `
+  <p><strong>🎥 Eng mashhur YouTube kanallar va darslar:</strong></p>
+
+  <div class="video-section">
+    <h4>1. Brackeys – Unity asoslari</h4>
+    <p>Unity dvigatelida o‘yin yaratishni o‘rgatuvchi eng mashhur kanal. Oson tilda, amaliy misollar bilan.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IlKaB1etrik" 
+      title="Brackeys Unity tutorial" frameborder="0" allowfullscreen></iframe>
+    <p><a href="https://www.youtube.com/embed/IlKaB1etrik" target="_blank">👉 Brackeys kanaliga o‘tish</a></p>
+  </div>
+
+<div class="video-section">
+  <h4>2. Brackeys –  Qanaqa qilib video game yaratsa bo'ladi ?</h4>
+  <p> O‘yin mexanikalari, dizayn g‘oyalari va psixologiyasi haqida.</p>
+  
+  <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/LOhfqjmasi0" 
+    title="Brackeys" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+  
+  <p><a href="https://youtu.be/LOhfqjmasi0?si=j6UCUIBiAX7TN_T6" target="_blank">
+    👉 Brackeys kanaliga o‘tish
+  </a></p>
+</div>
+
+<div class="video-section">
+  <h4>3. Unreal Engine 5.4.4 Beginner Tutorial – Unreal Engine’da o‘yin yaratishni boshlovchilar uchun darslik</h4>
+  <p>Unreal Engine’da tabiat manzarasi va uy ko‘rinishini loyihalashtirish.</p>
+
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/pQJi_cnRPAU"
+    title="Magnet VFX - Unreal Engine Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <p><a href="https://youtu.be/pQJi_cnRPAU?si=ManulhvEd_-KRuRz" target="_blank">
+    👉 Magnet VFX rasmiy kanaliga o‘tish
+  </a></p>
+</div>
+
+
+
+<div class="video-section">
+  <h4>4. How to Build a Complete 2D Farming Game – 8 soatlik 2D ferma yaratish bo‘yicha video darslik</h4>
+  <p>Godotda 2D ferma o'yinini loyihalashtirish.</p>
+
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/it0lsREGdmc"
+    title="Rapid Vectors - 2D Farming Game Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <p><a href="https://youtu.be/it0lsREGdmc?si=YnFCRmZszgWV4hWA" target="_blank">
+    👉 Rapid Vectors rasmiy kanaliga o‘tish
+  </a></p>
+</div>
+
+
+<div class="video-section">
+  <h4>5. O'yin yaratish, dvijoklar ishlashi</h4>
+  <p>Godotda 2D ferma o'yinini loyihalashtirish.</p>
+
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/ZZZNe4-KCds"
+    title="Kiber uz"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <p><a href="https://youtu.be/ZZZNe4-KCds?si=tIuQIx-ZzR8ZxLLf" target="_blank">
+    👉 Kiber uz rasmiy kanaliga o‘tish
+  </a></p>
+</div>
+
+
+  <p><strong>🧠 Amaliy mashqlar:</strong></p>
+  <ul>
+    <li>Videoni ko‘rganingdan so‘ng, o‘sha o‘yin mexanikasini o‘zing takrorlab yarat.</li>
+    <li>Koddagi yangi buyruqlarni alohida yozib, nima uchun ishlatilganini izohla.</li>
+    <li>Bir videoda ko‘rgan narsani o‘zingcha o‘zgartirib, yangi g‘oya sinab ko‘r.</li>
+    <li>O‘rganish jarayoningni “devlog” shaklida yozib bor.</li>
+  </ul>
+
+  <p>🎯 YouTube – o‘yin yaratuvchilar uchun eng boy bepul o‘quv manba. Har bir dars – yangi tajriba va ijodiy imkoniyat!</p>
+  `
+},
+   { 
+  id:"g5", 
+  title:"Dunyoga mashshur game developerlar :", 
+  img:"https://variety.com/wp-content/uploads/2017/05/unity-game-maker.jpg?w=1000&h=563&crop=1", 
+  short:"Mashhur gamedevlar videolari", 
+  long:`
+<h4>Game developerlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/FN4nazwqmGM"
+  title="Richest game devs in the world"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Game developerlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/Dg252MabKNs"
+  title="Richest game companies in the world"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Game developerlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/wGLj603vnbA"
+  title="Game deve kompaniyasiga sayohat"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+`
+   },
+],
+
+  "Doctor": [
+  {
+  id:"d1",
+  title:"Umumiy xirurgiya (ko'rinish)",
+  img:"https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/11/18/Surgery-Getty.jpg?width=1200&height=1200&fit=crop",
+  short:"Xirurgiya — operativ davolash asoslari, aseptika va anatomiya muhim yo‘nalishlaridir.",
+  long:`
+    <h3>Umumiy ma’lumot</h3>
+    <p>
+      Xirurgiya — bu kasalliklarni va jarohatlarni asosan <b>operativ aralashuv</b> yordamida davolovchi tibbiyot sohasi.
+      U aniq harakat, chuqur anatomik bilim, fiziologiya va aseptika tamoyillariga tayanadi.
+    </p>
+
+    <h4>Asosiy yo‘nalishlari:</h4>
+    <ul>
+      <li><b>Abdominal xirurgiya</b> — ichki a’zolar (oshqozon, jigar, ichak) operatsiyalari.</li>
+      <li><b>Torakal xirurgiya</b> — ko‘krak qafasi organlari (o‘pka, yurak) bilan bog‘liq amaliyotlar.</li>
+      <li><b>Ortopedik xirurgiya</b> — suyak, bo‘g‘im va mushak tizimi bilan ishlash.</li>
+      <li><b>Neyroxirurgiya</b> — miya va asab tizimi operatsiyalari.</li>
+      <li><b>Plastik xirurgiya</b> — estetik va rekonstruktiv amaliyotlar.</li>
+    </ul>
+
+    <h4>Aseptika va antiseptika:</h4>
+    <p>
+      Aseptika — mikroblarning jarohatga tushishining oldini olish usullari majmuasi. 
+      Antiseptika — mikroblarni yo‘qotish yoki ularni rivojlanishdan to‘xtatishdir.
+      <br>
+      <b>Asosiy tamoyillar:</b> steril asboblar, toza operatsion, qo‘lni yuvish va dezinfeksiya, steril qo‘lqop va niqob ishlatish.
+    </p>
+
+    <h4>Asosiy jarrohlik instrumentlari:</h4>
+    <ol>
+      <li>Skalpel — kesish uchun.</li>
+      <li>Pintset va klemma — to‘qimalarni ushlash uchun.</li>
+      <li>Qaychi — to‘qimalarni ajratish yoki kesish uchun.</li>
+      <li>Retraktor — jarohatni ochiq tutish uchun.</li>
+      <li>Ignaholder va jarrohlik ignasi — tikuv qo‘yish uchun.</li>
+    </ol>
+
+    <h4>Operatsiyaga tayyorgarlik bosqichlari:</h4>
+    <ul>
+      <li>Bemorni umumiy tahlil va tekshiruvdan o‘tkazish (EKG, qon, siydik, rentgen).</li>
+      <li>Anesteziya turini tanlash (mahalliy, umumiy, spinal).</li>
+      <li>Operatsion xonani, instrumentlar va kiyimlarni sterilizatsiya qilish.</li>
+      <li>Bemorning ruhiy tayyorgarligini ta’minlash.</li>
+    </ul>
+
+    <h4>Operatsiyadan keyingi kuzatuv:</h4>
+    <p>
+      Bemorning qon bosimi, nafas olish, og‘riq darajasi va qon ketish belgilarini kuzatish zarur.
+      Zarurat bo‘lsa antibiotiklar, analgetiklar va fizioterapiya buyuriladi.
+    </p>
+
+    <h4>O‘zbekiston va dunyo bo‘yicha yetakchi o‘quv markazlar:</h4>
+    <ul>
+      <li>Toshkent Tibbiyot Akademiyasi (TTA)</li>
+      <li>Samarqand davlat tibbiyot universiteti</li>
+      <li>Buxoro davlat tibbiyot instituti</li>
+      <li>Harvard Medical School (AQSh)</li>
+      <li>Johns Hopkins University (AQSh)</li>
+      <li>Oxford University (Buyuk Britaniya)</li>
+      <li>Karolinska Institutet (Shvetsiya)</li>
+    </ul>
+
+    <h4>Tavsiya etiladigan manbalar:</h4>
+    <ul>
+      <li>“Sabiston Textbook of Surgery” — eng mashhur xalqaro darslik.</li>
+      <li>“Schwartz’s Principles of Surgery” — umumiy xirurgiyaning fundamental asosi.</li>
+      <li>“Operativ jarrohlik asoslari” — O‘zbekiston tibbiyot oliygohlari uchun mahalliy darslik.</li>
+      <li>Saytlar: <a href='https://www.mayoclinic.org' target='_blank'>Mayo Clinic</a>, 
+          <a href='https://www.websurg.com' target='_blank'>WebSurg</a>, 
+          <a href='https://www.ncbi.nlm.nih.gov' target='_blank'>NCBI</a>.
+      </li>
+    </ul>
+  `
+}
+,
+    /* Yurak operatsiyalari (misollar) */
+{ 
+  id:"d2", 
+  title:"Koronar arteriya bypass (CABG)", 
+  img:"https://www.nhlbi.nih.gov/sites/default/files/inline-images/Bypass%20English.jpg", 
+  short:"Yurak qon tomirlarini bypass qilish operatsiyasi.", 
+  long:`
+    <h4>Umumiy ma'lumot:</h4>
+    <p><b>Koronar arteriya bypass operatsiyasi (CABG — Coronary Artery Bypass Grafting)</b> — bu yurakni qon bilan ta'minlaydigan koronar arteriyalar torayib qolganida, yurak mushagiga kislorod yetkazilishini tiklash uchun o'tkaziladigan jarrohlik amaliyotidir. Ushbu operatsiya yurak xurujini (infarktni) oldini olish va bemorning hayot sifatini yaxshilash maqsadida bajariladi.</p>
+
+    <h4>Nima uchun qilinadi:</h4>
+    <ul>
+      <li>Koronar arteriyalarda ateroskleroz tufayli torayish yoki to‘silish bo‘lganda.</li>
+      <li>Davolovchi dorilar yoki angioplastika (stent) yordam bermagan hollarda.</li>
+      <li>Yurak mushagiga kislorod yetishmasligi (angina pektoris) tez-tez kuzatilganda.</li>
+      <li>Bir nechta arteriyalar bir vaqtning o‘zida torayganida (multi-vessel disease).</li>
+    </ul>
+
+    <h4>Qanday o‘tkaziladi (jarayon bosqichlari):</h4>
+    <ol>
+      <li><b>Anesteziya:</b> Bemor umumiy narkoz ostida bo‘ladi — butunlay uxlatiladi.</li>
+      <li><b>Ko‘krak qafasini ochish (sternotomiya):</b> Jarroh yurakka kirish uchun ko‘krak suyagini ehtiyotlik bilan kesadi.</li>
+      <li><b>Graft tayyorlash:</b> Sog‘lom qon tomir (odatda oyoqdan olingan vena safena yoki ko‘krakdagi <i>internal mammary artery</i>) olinadi.</li>
+      <li><b>Bypass qilish:</b> Ushbu sog‘lom tomir yordamida toraygan arteriya aylanib o‘tiladi — ya’ni qon oqimi uchun yangi yo‘l yaratiladi.</li>
+      <li><b>Yurak faoliyatini qo‘llab-quvvatlash:</b> Zarur bo‘lganda “heart-lung machine” (yurak-o‘pka apparati) vaqtincha qon aylanishni davom ettiradi.</li>
+      <li><b>Yurakni tiklash:</b> Yurak urish ritmi normallashtiriladi, sternum (ko‘krak suyagi) metall simlar bilan mahkamlanadi, teri tikiladi.</li>
+    </ol>
+
+    <h4>Operatsiyadan keyin:</h4>
+    <p>Bemor odatda <b>1–2 kun reanimatsiyada (ICU)</b> kuzatuv ostida bo‘ladi. Yurak faoliyati, nafas olish va qon bosimi doimiy nazorat qilinadi. Keyinchalik oddiy palataga o‘tkaziladi va asta-sekin yurish, chuqur nafas olish mashqlari boshlanadi.</p>
+
+    <h4>Reabilitatsiya va parvarish:</h4>
+    <ul>
+      <li>Operatsiyadan keyin 6–8 hafta davomida <b>ko‘krak suyagini ehtiyotlash</b> (og‘ir yuk ko‘tarmaslik) tavsiya etiladi.</li>
+      <li><b>Dorilar:</b> Antiplatelet (Aspirin), statinlar (xolesterinni kamaytiruvchi), beta-blokatorlar (yurak ritmini me’yorda ushlab turuvchi).</li>
+      <li><b>Parhez:</b> Yog‘li, sho‘r va qovurilgan ovqatlardan saqlanish, sabzavotlar, baliq, mevalarni ko‘proq iste’mol qilish.</li>
+      <li><b>Jismoniy faollik:</b> Yurak reabilitatsiyasi dasturi doirasida asta-sekin yurish mashqlari tavsiya etiladi.</li>
+      <li><b>Psixologik qo‘llab-quvvatlash:</b> Yurak jarrohligidan so‘ng stress, xavotir yoki depressiya bo‘lishi mumkin — shifokor bilan maslahat zarur.</li>
+    </ul>
+
+    <h4>Asoratlar xavfi (kam uchraydigan):</h4>
+    <ul>
+      <li>Infeksiya (jarrohlik joyida yoki o‘pkada).</li>
+      <li>Qon ketishi yoki qon quyilishi.</li>
+      <li>Yurak ritmi buzilishi (aritmiya).</li>
+      <li>Qon bosimining pasayishi.</li>
+      <li>Kam hollarda — yurak faoliyatining vaqtincha susayishi.</li>
+    </ul>
+
+    <h4>Natija va prognoz:</h4>
+    <p>Ko‘pchilik bemorlarda CABG amaliyotidan so‘ng <b>ko‘krak og‘rig‘i yo‘qoladi</b>, <b>nafas olish yaxshilanadi</b> va <b>hayot sifati oshadi</b>. To‘g‘ri parhez, jismoniy faollik va dorilarni muntazam qabul qilish orqali yurak sog‘ligini uzoq muddat saqlab qolish mumkin.</p>
+
+    <h4>Xulosa:</h4>
+    <p>Koronar arteriya bypass — yurakni kislorod bilan ta’minlashni tiklovchi eng samarali jarrohlik amaliyotlaridan biridir. U o‘z vaqtida o‘tkazilsa, yurak xurujlarini kamaytiradi va umr davomiyligini uzaytiradi.</p>
+  `
+},
+
+{ 
+  id:"d3", 
+  title:"Koronar angioplastika (stent qo'yish)", 
+  img:"https://www.hopkinsmedicine.org/-/media/images/health/2_-treatment/cardiovascular/coronary-artery-disease-treatment/pcardio20140402v0001.jpg?h=360&iar=0&mh=360&mw=520&w=488&hash=7B64F38B2875E2A0714381933943DC8B", 
+  short:"Ballon bilan kengaytirish va stent qo'yish orqali arteriyani ochish.", 
+  long:`
+    <h4>Nima uchun qilinadi:</h4>
+    <p>Koronar angioplastika yurak arteriyalarining torayishi yoki to‘silib qolishi natijasida yuzaga kelgan qon oqimi buzilishini tiklash uchun amalga oshiriladi. Bu holat odatda <b>ateroskleroz</b> — ya'ni tomir devorlarida yog‘ (xolesterin) to‘planishi tufayli paydo bo‘ladi.</p>
+    
+    <h4>Asosiy maqsad:</h4>
+    <p>Yurak mushagiga yetarli kislorod yetkazib berishni tiklash, og‘riqni (angina) kamaytirish va infarkt xavfini kamaytirish.</p>
+    
+    <h4>Qanday oʻtkaziladi (soddalashtirilgan tartibda):</h4>
+    <ol>
+      <li>Jarayon odatda <b>mahalliy og‘riqsizlantirish</b> bilan amalga oshiriladi (bemor hushyor bo‘ladi, lekin og‘riq sezmaydi).</li>
+      <li>Shifokor <b>kateter</b> (ingichka trubka)ni son yoki bilak arteriyasi orqali yurak arteriyasigacha yetkazadi.</li>
+      <li>Kateterning uchida joylashgan <b>ballon</b> toraygan joyda shishiriladi va bu arteriyani kengaytiradi.</li>
+      <li>Keyin shu joyga <b>stent</b> — metall halqa yoki to‘r shaklidagi tayanch o‘rnatiladi, u arteriyani ochiq holda saqlab turadi.</li>
+      <li>Ballon so‘ngra pasaytiriladi va olib tashlanadi, stent esa arteriyada doimiy qoladi.</li>
+    </ol>
+    
+    <h4>Stent turlari:</h4>
+    <ul>
+      <li><b>Oddiy (bare-metal) stent</b> — faqat mexanik tayanch beradi.</li>
+      <li><b>Dorili (drug-eluting) stent</b> — ichki yuzasidan dori ajralib chiqadi va tomir yana torayishining oldini oladi.</li>
+    </ul>
+    
+    <h4>Jarayon davomiyligi:</h4>
+    <p>Odatda 30–90 daqiqa davom etadi. Agar bir nechta arteriya bilan ishlansa, biroz uzoqroq bo‘lishi mumkin.</p>
+    
+    <h4>Parvarish va reabilitatsiya:</h4>
+    <ul>
+      <li>Jarayondan so‘ng bemor 12–24 soat davomida kuzatuvda bo‘ladi.</li>
+      <li><b>Antiplatelet dorilar</b> (masalan, aspirin, klopidogrel) stent atrofida qon quyqalarini oldini olish uchun yoziladi.</li>
+      <li>Yurakni asrash uchun <b>statinlar</b> (xolesterinni kamaytiradi) va <b>beta-blokerlar</b> qo‘llanadi.</li>
+      <li>Reabilitatsiya paytida yengil jismoniy mashqlar va sog‘lom ovqatlanish tavsiya etiladi.</li>
+    </ul>
+    
+    <h4>Asoratlar (kam hollarda):</h4>
+    <ul>
+      <li>Arteriyada qayta torayish (restenoz)</li>
+      <li>Qon ketishi yoki gematoma (kateter joyida)</li>
+      <li>Allergik reaksiya (kontrast moddalarga)</li>
+      <li>Yurak ritmi buzilishi</li>
+    </ul>
+    
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Minimal invaziv — ochiq yurak operatsiyasiga nisbatan ancha yengil.</li>
+      <li>Tez tiklanish (odatda 1–2 kun ichida bemor uyiga chiqadi).</li>
+      <li>Angina (ko‘krak og‘rigi) tezda kamayadi.</li>
+    </ul>
+    
+    <h4>Xulosa:</h4>
+    <p>Koronar angioplastika — zamonaviy kardiologiyada keng qo‘llaniladigan, xavfsiz va samarali muolaja bo‘lib, yurak qon aylanishini tiklab, bemorning hayot sifatini yaxshilaydi.</p>
+  `
+}
+,
+  { 
+  id:"d4", 
+  title:"Apendektomiya (appendix olib tashlash)", 
+  img:"https://www.shutterstock.com/image-vector/laparoscopic-appendectomy-instruments-used-removal-600nw-2632946339.jpg", 
+  short:"Appendiksni jarrohlik yoʼli bilan olib tashlash operatsiyasi.", 
+  long:`
+    <h4>Nima uchun qilinadi:</h4>
+    <p><b>Apendektomiya</b> — bu ko‘r ichakning kichik chiqindisi bo‘lgan <b>appendiks</b> yallig‘langanda (ya’ni <b>appenditsit</b> paytida) bajariladigan jarrohlik amaliyotidir. Yallig‘langan appendiksni o‘z vaqtida olib tashlamaslik uning yorilishi va qorin bo‘shlig‘iga infeksiya (peritonit) tarqalishiga olib kelishi mumkin.</p>
+
+    <h4>Belgilar:</h4>
+    <ul>
+      <li>Pastki o‘ng qorin sohasida og‘riq</li>
+      <li>Isitma (harorat ko‘tarilishi)</li>
+      <li>Ko‘ngil aynish va qusish</li>
+      <li>Ishtahaning yo‘qolishi</li>
+    </ul>
+
+    <h4>Qanday oʻtkaziladi (jarayon bosqichlari):</h4>
+    <ol>
+      <li>Bemor <b>umumiy narkoz</b> ostida bo‘ladi (uyqu holatida, og‘riq sezmaydi).</li>
+      <li>Operatsiya ikki xil usulda amalga oshiriladi:
+        <ul>
+          <li><b>Laparoskopik usul</b> — qorinda 3 ta kichik kesma orqali kamera va maxsus asboblar yordamida appendiks olib tashlanadi.</li>
+          <li><b>Ochiq usul</b> — qorin pastki o‘ng tomonida bitta uzunroq kesma qilinadi va appendiks bevosita olinadi.</li>
+        </ul>
+      </li>
+      <li>Appendiks tomirlaridan ajratiladi, o‘rni tikiladi va infeksiya oldini olish uchun antiseptik bilan tozalanadi.</li>
+      <li>Tikuvlar qo‘yilib, yaraga steril bog‘lama (bandaj) qo‘yiladi.</li>
+    </ol>
+
+    <h4>Operatsiyadan keyin parvarish:</h4>
+    <ul>
+      <li>Operatsiyadan so‘ng bemor 1–3 kun kasalxonada kuzatuvda bo‘ladi.</li>
+      <li>Og‘riqni kamaytirish uchun analgetiklar beriladi.</li>
+      <li>Antibiotiklar infeksiya xavfini kamaytiradi.</li>
+      <li>Yengil suyuq ovqatlardan boshlanadi, keyin sekinlik bilan normal ovqatlanishga o‘tiladi.</li>
+      <li>Tikuvlar odatda 7–10 kunda olinadi (laparoskopikda tezroq).</li>
+    </ul>
+
+    <h4>Asoratlar (kam hollarda):</h4>
+    <ul>
+      <li>Yara infeksiyasi</li>
+      <li>Ichak harakati vaqtincha sekinlashishi</li>
+      <li>Qorin ichida suyuqlik yoki yiring to‘planishi (abscess)</li>
+    </ul>
+
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Laparoskopik usulda tiklanish tez (odatda 1 haftada to‘liq sog‘ayish).</li>
+      <li>Ko‘p hollarda kichik chandiq qoladi yoki umuman bilinmaydi.</li>
+      <li>Kasallikning asoratlanishining oldi olinadi (peritonitning oldini oladi).</li>
+    </ul>
+
+    <h4>Xulosa:</h4>
+    <p>Apendektomiya — tezkor, samarali va xavfsiz operatsiya bo‘lib, appenditsitning jiddiy asoratlarini oldini olishda muhim ahamiyatga ega. Zamonaviy laparoskopik texnologiyalar tufayli bemorlar qisqa fursatda sog‘ayadi va odatiy hayot tarziga qaytadi.</p>
+  `
+}
+,
+{ 
+  id:"d5", 
+  title:"Xoletsistektomiya (o‘t pufagini olib tashlash)", 
+  img:"https://gmed.uz/backend/web/uploads/service/16456141286000.jpg", 
+  short:"O‘t pufagini jarrohlik yo‘li bilan olib tashlash operatsiyasi.", 
+  long:`
+    <h4>Nima uchun qilinadi:</h4>
+    <p><b>Xoletsistektomiya</b> — bu o‘t pufagini jarrohlik yo‘li bilan olib tashlash operatsiyasi bo‘lib, odatda <b>o‘t toshlari (xolelitiaz)</b> yoki <b>o‘t pufagi yallig‘lanishi (xoletsistit)</b> sababli amalga oshiriladi. Bu kasalliklar qorin og‘rigi, ko‘ngil aynishi, hazm buzilishi va harorat ko‘tarilishi bilan kechadi.</p>
+
+    <h4>Belgilar:</h4>
+    <ul>
+      <li>O‘ng qovurg‘a ostida kuchli og‘riq (ayniqsa yog‘li ovqatdan keyin)</li>
+      <li>Ko‘ngil aynishi, qusish</li>
+      <li>Isitma (yallig‘lanish paytida)</li>
+      <li>Terining sarg‘ayishi (o‘t yo‘li to‘silganda)</li>
+    </ul>
+
+    <h4>Qanday oʻtkaziladi (jarayon bosqichlari):</h4>
+    <ol>
+      <li>Bemor <b>umumiy narkoz</b> ostida bo‘ladi (uxlatilgan holatda).</li>
+      <li>Operatsiya ikki usulda amalga oshiriladi:
+        <ul>
+          <li><b>Laparoskopik xoletsistektomiya</b> — qorin devorida 3–4 ta kichik teshik orqali kamera va maxsus asboblar yordamida o‘t pufagi olib tashlanadi.</li>
+          <li><b>Ochiq xoletsistektomiya</b> — katta kesma orqali bajariladi (odatda murakkab holatlarda yoki avvalgi jarrohlikdan keyin).</li>
+        </ul>
+      </li>
+      <li>O‘t pufagi jigar ostidan ajratiladi, o‘t yo‘llari ehtiyotkorlik bilan kesiladi va bog‘lanadi.</li>
+      <li>O‘t pufagi butunlay olib tashlanadi, zarurat bo‘lsa drenaj qo‘yiladi.</li>
+      <li>Tikuvlar qo‘yilib, yara steril bog‘lama bilan yopiladi.</li>
+    </ol>
+
+    <h4>Operatsiyadan keyingi parvarish:</h4>
+    <ul>
+      <li>Bemor odatda laparoskopik usuldan so‘ng 1–2 kun ichida uyga chiqariladi.</li>
+      <li>Og‘riqni kamaytirish uchun analgetiklar, infeksiya xavfini kamaytirish uchun antibiotiklar buyuriladi.</li>
+      <li>Yengil, yog‘siz ovqat tavsiya etiladi — ayniqsa dastlabki haftalarda.</li>
+      <li>Og‘ir jismoniy ishlar 2–3 hafta davomida tavsiya etilmaydi.</li>
+    </ul>
+
+    <h4>Asoratlar (kam hollarda):</h4>
+    <ul>
+      <li>Yara infeksiyasi yoki qon ketishi</li>
+      <li>Safro oqish (o‘t yo‘li shikastlansa)</li>
+      <li>Ichak faoliyati vaqtincha buzilishi</li>
+      <li>Qorin ichida suyuqlik to‘planishi</li>
+    </ul>
+
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Laparoskopik usulda tiklanish juda tez (ko‘pchilik 1 haftada sog‘ayadi).</li>
+      <li>Yaralar kichik va chandiqlar deyarli bilinmaydi.</li>
+      <li>O‘t toshlari yoki xoletsistit qaytalanish xavfi butunlay yo‘qoladi.</li>
+    </ul>
+
+    <h4>Xulosa:</h4>
+    <p>Xoletsistektomiya — eng ko‘p bajariladigan va xavfsiz jarrohlik amaliyotlardan biri bo‘lib, o‘t pufagi bilan bog‘liq muammolarni butunlay bartaraf etadi. Laparoskopik texnologiyalar tufayli tiklanish davri qisqa va bemor tezda odatiy hayot tarziga qaytadi.</p>
+  `
+}
+,
+{ 
+  id:"d6", 
+  title:"Valv amaliyoti (yurak klapanini almashtirish yoki ta’mirlash)", 
+  img:"https://www.manipalhospitals.com/uploads/image_gallery/Is_Heart_Valve_Replacement_Right_for_You__Symptoms,_Surgery,_and_Alternatives.png", 
+  short:"Yurak klapanlaridagi nuqsonlarni tuzatish yoki ularni yangi klapan bilan almashtirish operatsiyasi.", 
+  long:`
+    <h4>Nima uchun qilinadi:</h4>
+    <p><b>Valv amaliyoti</b> — bu yurakdagi klapanlar (aortal, mitral, trikuspid yoki o‘pka klapani) normal ishlamay qolganida bajariladigan operatsiyadir. Bu holatlarda klapan <b>yopilmay (regurgitatsiya)</b> yoki <b>to‘liq ochilmay (stenoz)</b> qoladi, natijada yurakdan qon oqimi buziladi.</p>
+    
+    <h4>Asosiy sabablari:</h4>
+    <ul>
+      <li>Rеvmatik yurak kasalligi</li>
+      <li>Qarilik bilan bog‘liq degenerativ o‘zgarishlar</li>
+      <li>Endokardit (bakterial infeksiya tufayli klapan shikastlanishi)</li>
+      <li>Tug‘ma yurak nuqsonlari</li>
+    </ul>
+
+    <h4>Operatsiyaning turlari:</h4>
+    <ol>
+      <li><b>Valvani ta’mirlash (repair):</b> Klapan shakli, yopilish mexanizmi tiklanadi. Bu holatda bemorning o‘z valvi saqlanadi.</li>
+      <li><b>Valvani almashtirish (replacement):</b> Shikastlangan klapan olib tashlanadi va quyidagi turlardan biri bilan almashtiriladi:
+        <ul>
+          <li><b>Mexanik klapan:</b> Uzoq muddat xizmat qiladi, ammo umrbod antikoagulyant (qonni suyultiruvchi) dori qabul qilish zarur.</li>
+          <li><b>Biologik klapan:</b> Donor (cho‘chqa, sigir yoki inson to‘qimasi) asosida yaratiladi, tabiiyroq, ammo 10–15 yildan keyin almashtirish kerak bo‘lishi mumkin.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h4>Qanday oʻtkaziladi (soddalashtirilgan tartibda):</h4>
+    <ol>
+      <li>Bemor <b>umumiy narkoz</b> ostida bo‘ladi.</li>
+      <li>Ko‘pincha operatsiya <b>sternum (ko‘krak suyagi)</b>ni ochish orqali amalga oshiriladi, ammo ayrim hollarda minimal invaziv usullar ham mavjud.</li>
+      <li>Yurak to‘xtatiladi va qon aylanishi “<b>heart-lung machine</b>” yordamida davom ettiriladi.</li>
+      <li>Shikastlangan klapan topiladi va ta’mirlanadi yoki yangisi o‘rnatiladi.</li>
+      <li>Yurak ishga tushiriladi, sternum tikiladi va yara yopiladi.</li>
+    </ol>
+
+    <h4>Operatsiyadan keyingi parvarish:</h4>
+    <ul>
+      <li>Bemor bir necha kun <b>reanimatsiya (ICU)</b>da kuzatuvda bo‘ladi.</li>
+      <li>Qon bosimi, yurak ritmi va nafas olish holati diqqat bilan nazorat qilinadi.</li>
+      <li>Mexanik klapan qo‘yilgan bo‘lsa, doimiy ravishda <b>antikoagulyant dorilar</b> (masalan, varfarin) ichiladi.</li>
+      <li>Fizioterapiya va yurak reabilitatsiyasi bosqichma-bosqich amalga oshiriladi.</li>
+    </ul>
+
+    <h4>Asoratlar (kam hollarda):</h4>
+    <ul>
+      <li>Qon ketishi yoki infeksiya</li>
+      <li>Qon quyqasi hosil bo‘lishi (tromboz)</li>
+      <li>Yangi klapanning ishlamasligi yoki shikastlanishi</li>
+      <li>Yurak ritmi buzilishi</li>
+    </ul>
+
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Yurak ishini yaxshilaydi va qon aylanishini normallashtiradi.</li>
+      <li>Alomatlar (nafas qisishi, holsizlik, shish) yo‘qoladi.</li>
+      <li>Hayot sifati va umr davomiyligi oshadi.</li>
+    </ul>
+
+    <h4>Xulosa:</h4>
+    <p>Valv amaliyoti — yurak klapanlari bilan bog‘liq og‘ir kasalliklarni davolashda eng samarali usullardan biri bo‘lib, zamonaviy texnologiyalar tufayli xavfsiz va uzoq muddatli natija beradi. Klapan to‘liq ishlay boshlaganda bemorning sog‘lig‘i va hayot sifati ancha yaxshilanadi.</p>
+  `
+}
+,
+{ 
+  id:"d7", 
+  title:"Hip replacement (son bo‘g‘imini almashtirish)", 
+  img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNKVElW1ZJA3gm-0h1rVVdTFFNAjiv4kDaIw&s", 
+  short:"Bo‘g‘im protezlash orqali harakatni tiklash jarrohligi.", 
+  long:`
+    <h4>Nima uchun qilinadi:</h4>
+    <p><b>Hip replacement</b> yoki <b>son bo‘g‘imini endoprotezlash</b> — bu son bo‘g‘imi og‘ir shikastlangan yoki yallig‘langan hollarda bajariladigan operatsiya. Maqsad — og‘riqni kamaytirish, harakatlanishni yaxshilash va bemorning hayot sifatini oshirish.</p>
+
+    <h4>Asosiy sabablar:</h4>
+    <ul>
+      <li><b>Osteoartrit</b> — bo‘g‘im xaftasining yemirilishi.</li>
+      <li><b>Rеvmatoid artrit</b> — yallig‘lanishli bo‘g‘im kasalligi.</li>
+      <li><b>Travma (sinish yoki chiqish)</b> natijasida bo‘g‘im shikastlanishi.</li>
+      <li><b>Aseptik nekroz</b> — suyak to‘qimasining qon yetishmovchiligi tufayli o‘lishi.</li>
+    </ul>
+
+    <h4>Qanday oʻtkaziladi (jarayon bosqichlari):</h4>
+    <ol>
+      <li>Bemor <b>umumiy yoki orqa (spinal) anesteziya</b> ostida bo‘ladi.</li>
+      <li>Jarroh son suyagini ochib, shikastlangan <b>bo‘g‘im boshini</b> olib tashlaydi.</li>
+      <li>O‘rniga <b>metall, keramika yoki plastmassadan tayyorlangan protez</b> o‘rnatiladi.</li>
+      <li>Bo‘g‘imning boshqa qismi (chanoq tomoni) ham maxsus qoplama bilan almashtiriladi.</li>
+      <li>Protez maxsus sement bilan yoki tabiiy suyak o‘sishi orqali mahkamlanadi.</li>
+      <li>Tikuvlar qo‘yilib, yara steril bog‘lama bilan yopiladi.</li>
+    </ol>
+
+    <h4>Operatsiyadan keyingi parvarish:</h4>
+    <ul>
+      <li>Bemor 1–3 kun davomida shifokor nazoratida bo‘ladi.</li>
+      <li>Og‘riqni kamaytiruvchi va yallig‘lanishga qarshi dorilar buyuriladi.</li>
+      <li>Fizioterapiya erta boshlanadi — bu protez bilan to‘g‘ri yurishni o‘rganishga yordam beradi.</li>
+      <li>2–3 haftada bemor tayoqcha bilan yurishni boshlaydi.</li>
+      <li>To‘liq tiklanish odatda 2–3 oy ichida sodir bo‘ladi.</li>
+    </ul>
+
+    <h4>Asoratlar (kam hollarda):</h4>
+    <ul>
+      <li>Yara infeksiyasi</li>
+      <li>Protezning chiqib ketishi yoki bo‘shashishi</li>
+      <li>Qon quyqalari (tromboz)</li>
+      <li>Og‘riq yoki oyoq uzunligining biroz farqi</li>
+    </ul>
+
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Og‘riqdan butunlay xalos bo‘lish.</li>
+      <li>Harakat va yurish qobiliyatining qaytishi.</li>
+      <li>Hayot sifati va mustaqillik darajasining oshishi.</li>
+      <li>Protezlar 15–25 yilgacha xizmat qiladi.</li>
+    </ul>
+
+    <h4>Xulosa:</h4>
+    <p>Hip replacement — bu zamonaviy va samarali ortopedik operatsiya bo‘lib, og‘ir artrit yoki travma oqibatida son bo‘g‘imining harakatini tiklaydi. To‘g‘ri parvarish va reabilitatsiya orqali bemorlar odatiy faol hayot tarziga qaytishlari mumkin.</p>
+  `
+}
+,
+
+{ 
+  id:"d8", 
+  title:"Endoskopik va minimal invaziv usullar", 
+  img:"https://s33929.pcdn.co/wp-content/uploads/sites/388/2021/05/5fe37b_1be2d783c3ba406e8930b3bfe41e3c87_mv2.jpg", 
+  short:"Laparoskopiya va endoskopiya — kichik kesmalar bilan bajariladigan zamonaviy jarrohlik.", 
+  long:`
+    <h4>Umumiy ma’lumot:</h4>
+    <p>Minimal invaziv jarrohlik — bu organizmga kamroq shikast yetkazadigan, kichik kesmalar orqali bajariladigan operatsiyalar majmuasidir. Bunday usullar ichki organlarni ko‘rish, tashxislash yoki davolash uchun endoskop yoki laparoskop kabi maxsus optik asboblardan foydalanadi.</p>
+
+    <h4>Turlari:</h4>
+    <ul>
+      <li><b>Laparoskopiya:</b> Qorin bo‘shlig‘idagi organlarni (o‘t pufagi, appendiks, bachadon va boshqalar) tekshirish yoki operatsiya qilish uchun ishlatiladi.</li>
+      <li><b>Endoskopiya:</b> Ichki organlarga (oshqozon, ichak, o‘pka) maxsus kamera bilan kirish imkonini beradi.</li>
+      <li><b>Artroskopiya:</b> Bo‘g‘imlar (tizza, yelka, son) ichidagi patologiyalarni davolash uchun.</li>
+      <li><b>Torakoskopiya:</b> Ko‘krak qafasidagi organlarni (o‘pka, yurak qobig‘i) ko‘rish va davolash uchun.</li>
+    </ul>
+
+    <h4>Afzalliklari:</h4>
+    <ul>
+      <li>Kichik kesmalar tufayli kamroq qon yo‘qotish.</li>
+      <li>Asoratlar xavfining kamayishi.</li>
+      <li>Tiklanish davrining qisqaligi.</li>
+      <li>Estetik jihatdan chiroyli — katta chandiqlar qolmaydi.</li>
+    </ul>
+
+    <h4>Qo‘llanilish sohalari:</h4>
+    <p>Bu usullar umumiy jarrohlik, ginekologiya, urologiya, ortopediya va kardiologiyada keng qo‘llaniladi.</p>
+
+    <h4>Tiklanish:</h4>
+    <p>Bemor odatda 1–2 kun ichida uyga chiqariladi, yengil og‘riq va noqulayliklar bir necha kun ichida yo‘qoladi. To‘liq sog‘ayish bir necha hafta ichida kechadi.</p>
+  `
+},
+{ 
+  id:"d9", 
+  title:"Reabilitatsiya va post-operatsion parvarish", 
+  img:"https://mynoblecare.com/wp-content/uploads/2025/02/post-operate-care-center-in-malaysia-2-1024x731.jpg", 
+  short:"Operatsiyadan keyingi tiklanish, fizioterapiya va psixologik yordam jarayoni.", 
+  long:`
+    <h4>Umumiy tushuncha:</h4>
+    <p>Operatsiyadan keyingi parvarish (post-operatsion reabilitatsiya) — bu bemorning sog‘lom hayotga qaytishini tezlashtirishga qaratilgan tibbiy va reabilitatsion tadbirlar majmuasidir. Jarrohlikning muvaffaqiyati nafaqat amaliyotga, balki undan keyingi parvarishga ham bevosita bog‘liq.</p>
+
+    <h4>Asosiy bosqichlar:</h4>
+    <ol>
+      <li><b>Erta bosqich (1–3 kun):</b> Bemor hayotiy ko‘rsatkichlari nazorat qilinadi (nafas, yurak urishi, qon bosimi). Og‘riqni kamaytirish va infeksiya oldini olish uchun dorilar beriladi.</li>
+      <li><b>O‘rta bosqich (3–14 kun):</b> Fizioterapiya mashqlari, nafas olish gimnastikasi va yengil harakatlar tiklanishni tezlashtiradi. Bemor asta-sekin o‘tirish va yurishni boshlaydi.</li>
+      <li><b>Kech bosqich (2–8 hafta):</b> Mushak kuchini tiklash, parhezga rioya qilish va psixologik tayyorgarlik. Reabilitatsiya shifokor va fizioterapevt nazoratida olib boriladi.</li>
+    </ol>
+
+    <h4>Muvofiq davolash elementlari:</h4>
+    <ul>
+      <li><b>Dori vositalari:</b> Antibakterial, og‘riq qoldiruvchi, antikoagulyant va yallig‘lanishga qarshi dorilar.</li>
+      <li><b>Ovqatlanish:</b> Yengil hazm bo‘ladigan, oqsil va vitaminlarga boy ovqatlar tavsiya etiladi.</li>
+      <li><b>Gigiyena:</b> Jarrohlik joyini toza saqlash va infeksiya xavfini kamaytirish muhim.</li>
+      <li><b>Fizioterapiya:</b> Tiklanish davrida qon aylanishi va mushak faoliyatini yaxshilaydi.</li>
+      <li><b>Psixologik yordam:</b> Uzoq tiklanish jarayonida stress va xavotirni kamaytirishga yordam beradi.</li>
+    </ul>
+
+    <h4>Tiklanish davri:</h4>
+    <p>Har bir operatsiya turi uchun reabilitatsiya davomiyligi farq qiladi. Masalan, minimal invaziv amaliyotlardan so‘ng bemor 1–2 hafta ichida tiklansa, yurak yoki suyak jarrohligidan so‘ng bu muddat 2–3 oyga cho‘zilishi mumkin.</p>
+
+    <h4>Xulosa:</h4>
+    <p>Post-operatsion parvarish — bu jarrohlikning ajralmas qismi. To‘g‘ri reabilitatsiya bemorning sog‘lom hayotga qaytishini tezlashtiradi va asoratlar xavfini kamaytiradi.</p>
+  `
+}
+,
+{ 
+  id:"d10", 
+  title:"Xirurgiyada asosiy manbalar va ta’lim maskanlari", 
+  img:"https://images.unsplash.com/photo-1652787544912-137c7f92f99b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaWNhbCUyMGJvb2t8ZW58MHx8MHx8fDA%3D", 
+  short:"Xirurgiya bo‘yicha muhim kitoblar, onlayn manbalar va universitetlar.", 
+  long:`
+    <h4>📚 Asosiy o‘quv adabiyotlar (kitoblar):</h4>
+    <ul>
+      <li><b>“Sabiston Textbook of Surgery”</b> — Dunyo bo‘yicha eng mashhur, 70 yildan ortiq qo‘llanilayotgan fundamental jarrohlik kitobi (Elsevier).</li>
+      <li><b>“Schwartz’s Principles of Surgery”</b> — Jarrohlikning nazariy va amaliy asoslarini chuqur yoritadi, tibbiyot talabalariga tavsiya etiladi.</li>
+      <li><b>“Current Surgical Therapy” – John L. Cameron</b> — Zamonaviy jarrohlik usullarining amaliy qo‘llanmasi.</li>
+      <li><b>“Oxford Handbook of Clinical Surgery”</b> — Klinik amaliyotda tez yordamchi sifatida ishlatiladigan ixcham qo‘llanma.</li>
+      <li><b>“Atlas of Human Anatomy” – Netter</b> — Jarrohlikda anatomiyani mukammal tushunish uchun eng muhim atlaslardan biri.</li>
+      <li><b>“Jarrohlik amaliyoti asoslari” – O‘zbekiston tibbiyot institutlari uchun darslik</b> (Toshkent, 2020).</li>
+      <li><b>“Umumiy xirurgiya” – prof. A. T. Jo‘rayev</b> — O‘zbek tilidagi tibbiyot talabalari uchun o‘quv qo‘llanma.</li>
+    </ul>
+
+    <h4>🌐 Foydali veb-saytlar:</h4>
+    <ul>
+      <li><a href="https://www.nejm.org/" target="_blank">The New England Journal of Medicine (NEJM)</a> — Dunyo miqyosidagi eng nufuzli tibbiyot jurnali.</li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/" target="_blank">PubMed</a> — Tibbiyot bo‘yicha ilmiy maqolalar bazasi.</li>
+      <li><a href="https://www.websurg.com/" target="_blank">WebSurg</a> — Minimal invaziv jarrohlik bo‘yicha video darslar va maqolalar.</li>
+      <li><a href="https://www.elsevier.com/en-xm/health/surgery" target="_blank">Elsevier Surgery Portal</a> — Kitoblar, jurnallar va amaliy ma’lumotlar.</li>
+      <li><a href="https://soglom.uz/" target="_blank">Soglom.uz</a> — O‘zbekiston sog‘liqni saqlash va tibbiy yangiliklari.</li>
+      <li><a href="https://tma.uz/" target="_blank">Toshkent Tibbiyot Akademiyasi (TMA)</a> — O‘zbekistonda jarrohlik bo‘yicha yetakchi ta’lim maskani.</li>
+      <li><a href="https://amu.uz/" target="_blank">Andijon Davlat Tibbiyot Instituti</a> — Xirurgiya fakulteti va ilmiy ishlanmalar markazi.</li>
+      <li><a href="https://sammi.uz/" target="_blank">Samarqand Davlat Tibbiyot Universiteti</a> — Xirurgik amaliyotlar bo‘yicha ixtisoslashgan kafedralar.</li>
+    </ul>
+
+    <h4>🏫 Dunyo bo‘yicha yetakchi universitetlar:</h4>
+    <ol>
+      <li><b>Harvard Medical School (AQSh)</b> — Tibbiyot va xirurgiya bo‘yicha dunyodagi №1 ta’lim maskani.</li>
+      <li><b>Johns Hopkins University (AQSh)</b> — Yurak va neyroxirurgiya bo‘yicha yetakchi markaz.</li>
+      <li><b>Oxford University (Buyuk Britaniya)</b> — Klinik tadqiqotlar va jarrohlik etikasi yo‘nalishida yetakchi.</li>
+      <li><b>Karolinska Institutet (Shvetsiya)</b> — Nobel mukofotini beruvchi akademiya, jarrohlikda innovatsion yondashuvlari bilan mashhur.</li>
+      <li><b>Tokyo University (Yaponiya)</b> — Minimal invaziv va robotlashtirilgan jarrohlik bo‘yicha ilg‘or maktab.</li>
+      <li><b>Toshkent Tibbiyot Akademiyasi</b> — O‘zbekiston bo‘yicha asosiy jarrohlik ta’lim va ilmiy markaz.</li>
+    </ol>
+
+    <h4>🧠 Qo‘shimcha tavsiyalar:</h4>
+    <ul>
+      <li>Onlayn platformalar: <b>Coursera, Medscape, Khan Academy Medicine</b>.</li>
+      <li>Yosh jarrohlar uchun amaliyot: <b>TMA klinikalari</b> va <b>Davlat shifoxonalari</b>.</li>
+      <li>Til bilimi muhim: tibbiy ingliz tilini o‘rganish jarrohlik terminlarini to‘g‘ri tushunishga yordam beradi.</li>
+    </ul>
+
+    <h4>Xulosa:</h4>
+    <p>Xirurgiya sohasida muvaffaqiyatga erishish uchun nazariya (kitoblar), amaliyot (klinika), va xalqaro manbalar bilan ishlash muhim. O‘zbekiston tibbiyot maktablari bu yo‘nalishda xalqaro tajriba bilan uyg‘unlashib bormoqda.</p>
+  `
+}
+
+
+,{ id:"d11", 
+title:"Xirurgiya videolari",
+short:"Koronar, Valv, Hip operatsiyalari vdeolari:",
+img:"https://media.istockphoto.com/id/501707098/photo/surgeons-operating-on-patient-in-operating-theatre-under-lights.jpg?s=612x612&w=0&k=20&c=aCNe7gIVCrm5wyvd5OA1ewW1h50yIIT7Tgndrd-0ml0=",
+long:`
+<h4>Koronar Angioplastika :</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/p3z9FLYijrQ"
+  title="Koronar Angioplastika nima?"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Valv amaliyoti :</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/ifbDGB5ooxY"
+  title="Aortic Valve replacement"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+<h4>Bosh suyak protezi :</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/owf446Z1K2I"
+  title="Hip replacement (Bosh suyak protezi)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+
+`
+},
+  ],
+
+  "Chef": [
+/* 10 retsept (har biri batafsil) */
+
+{ 
+  id:"c0", 
+  title:"Dunyoga mashshur cheflar:", 
+  img:"https://www.ecoleducasse.com/application/files/5116/8896/1427/The_Top_10_chefs_in_the_world_for_2023_and_how_you_could_join_them.jpg", 
+  short:"Mashhur cheflar videolari", 
+  long:`
+<h4>Video oshpazlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/nlsQFibVt9M"
+  title="Dunyodagi Michelin Star oshpazlari"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Video oshpazlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/O5d1Cclk5QA"
+  title="The Best Chef in the World"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Video oshpazlar:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/8G4oG3VdGyg"
+  title="Gordon Ramsey ko'rsatuvidan"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id:"c1", 
+  title:"O'zbek palov (to'liq retsept)", 
+  img:"https://st4.depositphotos.com/8153606/20661/i/450/depositphotos_206619710-stock-photo-uzbek-traditional-cuisine-pilaf-plov.jpg", 
+  short:"An'anaviy o'zbek palov — bosqichma-bosqich.", 
+  long:`
+    <h4>Masalliqlar:</h4>
+    <ul>
+      <li>Guruch — 500 g</li>
+      <li>Mol go'shti — 400 g</li>
+      <li>Sabzi — 400 g</li>
+      <li>Piyoz — 2 dona</li>
+      <li>Yog' — 200 g</li>
+      <li>Tuz, ziravorlar</li>
+    </ul>
+
+    <h4>Tayyorlash:</h4>
+    <ol>
+      <li>Go'shtni yog'da qovuring, so'ng piyoz va sabzini qo'shing va qovuring.</li>
+      <li>Guruchni yuvib, ustiga suyuqlik qo'shing va damlang.</li>
+      <li>20–30 daqiqa pishgach, olovdan oling va 15 daqiqa damda tursin.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> 1 soat</p>
+
+<h4>Video retsept:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/OeA39PDtU4k"
+  title="UZBEK PILAF (Palov / Osh) retsepti"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+  `
+},
+
+{
+  id: "c2",
+  title: "Fransuz kruassan (soddalashtirilgan)",
+  img: "https://media.istockphoto.com/id/629455902/photo/french-boulangerie-fresh-croissant-for-sale.jpg?s=612x612&w=0&k=20&c=ImE0C1nh-Nq_FROYD3IcbeC1GrvA2RUH1zzbKPOY2Lg=",
+  short: "Xamir laminatsiyasi bilan uyda tayyorlanadigan soddalashtirilgan kruassan retsepti.",
+  long: `
+    <h4>Masalliqlar (taxminan 8–10 dona):</h4>
+    <ul>
+      <li>Un — 500 g</li>
+      <li>Sut (iliq) — 200 ml</li>
+      <li>Suv — 50 ml</li>
+      <li>Quruq xamirturush — 10 g (yoki yangi 25 g)</li>
+      <li>Shakar — 40 g</li>
+      <li>Tuz — 8 g</li>
+      <li>Sariyog' (xamir uchun) — 50 g</li>
+      <li>Sariyog' (laminatsiya uchun, sovutilgan) — 250 g</li>
+      <li>Tuxum (yupqa yaltiratish uchun) — 1 dona</li>
+    </ul>
+
+    <h4>Tayyorlash qadamlar:</h4>
+    <ol>
+      <li><strong>Xamirni tayyorlash:</strong> Iliq sut va suvga shakar va xamirturushni qo'shib 5–10 daqiqa ko'tarilishga qoldiring. Un, tuz va 50 g sariyog'ni aralashtirib, sutli aralashmani qo'shing. Yumshoq, biroz yopishqoq xamir yoğiring (taxminan 5–7 daqiqa). Xamirni to'rtburchak shaklda yassilab, oynaga o'xshash plastik folga bilan o'rab, 30–60 daqiqa sovutgichda damlatib qo'ying.</li>
+      <li><strong>Sariyog'ni tayyorlash:</strong> Sovutilgan 250 g sariyog'ni un bilan ozgina bosib, plitka shakliga keltiring (taxminan 20x15 sm), folga bilan o'rab, yana sovutgichga qo'ying.</li>
+      <li><strong>Laminatsiya (katlash):</strong> Xamirni muzlatgichdan olib, un sepilgan yuzada katta to'rtburchakka yoying. Ichiga sariyog' blokini joylashtirib, xamirni ustidan yopib, uch marta katlab laminatsiya qiling: har bir katlashdan keyin 20–30 daqiqa sovutgichda dam oling. (Umuman 3 ta “turn” qilish yetarli — 2–3 soat ichida.)</li>
+      <li><strong>Shakllash:</strong> Laminatsiyadan so'ng xamirni 3–4 mm qalinlikda yoping va katta uchburchaklar kesing. Har bir uchburchakni keng tomonidan egib, uchiga tomon o'rab aylantirib, klassik kruassan shaklini bering. Ularni pishirish varag'iga qo'ying.</li>
+      <li><strong>Ko'tarish:</strong> Tayyor kruassanlarni iliq joyda yoki sovutgichda (sekinroq usul) 1–1.5 soat davomida, hajmi taxminan 1.5 barobarga ko'tarilguncha qoldiring.</li>
+      <li><strong>Yaltiratish va pishirish:</strong> Tuxumni ozgina chayqab suv bilan aralashtirib (yoki faqat tuxum) kruassanlarning ustiga surting. Oldindan 200°C ga qizdirilgan duxovkada 15–20 daqiqa yoki oltin-jigarrang bo‘lguncha pishiring.</li>
+      <li><strong>Sovutish:</strong> Pishgan kruassanlarni panadan olib 10 daqiqa sovutib, so'ng xizmat qiling.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> Faol ish vaqti ~1–1.5 soat; damlash va sovutish bilan jami ~3–6 soat (sovutgichdagi damlash usuliga qarab).</p>
+    <p><strong>Qo'shimcha maslahatlar:</strong> Agar vaqt kam bo'lsa, "yarim tayyor" xamir yoki buter xamir (puff pastry) ishlatib ham osonroq kruassan qilib olishingiz mumkin. Laminatsiya jarayonida xamir va sariyog' sovuq bo'lishi kerak — shunda qatlamlar yaxshi hosil bo'ladi.</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/eyITOGBop_s"
+  title="Kruassan tayyorlash (video retsept)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+  `
+  
+},
+{
+  id:"c3",
+  title:"Italiya pasta (basic spaghetti aglio e olio)",
+  img:"https://www.shutterstock.com/image-photo/traditional-italian-food-spaghetti-bolognese-600nw-2518618657.jpg",
+  short:"Aglio e olio — tez, sodda va juda mazali italyancha makaron retsepti.",
+  long:`
+    <h4>Masalliqlar (2 porsiya uchun):</h4>
+    <ul>
+      <li>Spaghetti — 200 g</li>
+      <li>Sarimsoq — 3 tish</li>
+      <li>Zaytun yog'i — 4 osh qoshiq</li>
+      <li>Qizil qalampir (mayda bo'laklar) — 1/2 choy qoshiq</li>
+      <li>Tuz — ta’bga ko‘ra</li>
+      <li>Petrushka (ixtiyoriy) — bezatish uchun</li>
+      <li>Parmezan (ixtiyoriy) — sepish uchun</li>
+    </ul>
+
+    <h4>Tayyorlash:</h4>
+    <ol>
+      <li><strong>Makaronni pishiring:</strong> Suvni qaynatib, tuz qo‘shing. Spaghettini “al dente” holatiga yetguncha (7–8 daqiqa) pishiring. Keyin suvini suzib oling, lekin 1/2 stakan qaynatilgan suvni saqlab qo‘ying.</li>
+      <li><strong>Sous tayyorlash:</strong> Zaytun yog‘ini tovada qizdiring. Sarimsoqni yupqa bo‘laklarga kesib, past olovda oltin tusga kirguncha qovuring. Qizil qalampir qo‘shing.</li>
+      <li><strong>Birlashtirish:</strong> Tovaga pishgan makaronni soling, ozgina ajratilgan makaron suvidan qo‘shing va 1–2 daqiqa aralashtiring, shunda sous spaghettiga singadi.</li>
+      <li><strong>Bezash:</strong> Tayyor pastani likopchaga solib, ustiga mayda to‘g‘ralgan petrushka va parmezan seping.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> 20 daqiqa</p>
+    <p><strong>Maslahat:</strong> Sarimsoqni kuydirmang, aks holda sous achchiq ta’m beradi.</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/htDPCbfwqos"
+  title="O'zbek palov tayyorlash (video retsept)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+   `
+},
+{
+  id:"c4",
+  title:"Oddiy pizza (uyda)",
+  img:"https://www.afisha.uz/uploads/media/2019/04/0211663_m.jpeg",
+  short:"Uy sharoitida tayyorlanadigan klassik pizza — tez, soddaligi bilan qulay.",
+  long:`
+    <h4>Masalliqlar (1 ta katta pizza uchun):</h4>
+    <ul>
+      <li>Un — 300 g</li>
+      <li>Suv — 150 ml</li>
+      <li>Xamirturush — 5 g (yoki 10 g yangi)</li>
+      <li>Tuz — 1 choy qoshiq</li>
+      <li>Shakar — 1 choy qoshiq</li>
+      <li>Zaytun yog'i — 2 osh qoshiq</li>
+      <li><strong>Sous uchun:</strong> Pomidor pastasi — 3 osh qoshiq, sarimsoq — 1 tish, quritilgan oregano — bir chimdim</li>
+      <li><strong>Toppinglar:</strong> Pomidor, mozzarella pishlog‘i, kolbasa (yoki tovuq), zaytunlar</li>
+    </ul>
+
+    <h4>Tayyorlash:</h4>
+    <ol>
+      <li><strong>Xamir tayyorlash:</strong> Iliq suvga xamirturush, shakar va 1 osh qoshiq un qo‘shib 10 daqiqa ko‘taring. So‘ng tuz, zaytun yog‘i va qolgan unni qo‘shib yumshoq xamir yoğiring. 40–60 daqiqa ko‘tarilish uchun qoldiring.</li>
+      <li><strong>Sous:</strong> Pomidor pastasini ozgina suv, sarimsoq va oregano bilan aralashtiring. Ta’bga ko‘ra tuz qo‘shing.</li>
+      <li><strong>Shakllash:</strong> Xamirni yoyib, diametri 25–30 sm bo‘lgan doira hosil qiling. Ustiga sous surting, pishloq, pomidor va kolbasa bo‘laklarini joylashtiring.</li>
+      <li><strong>Pishirish:</strong> Oldindan 220°C gacha qizdirilgan duxovkada 12–15 daqiqa pishiring — pishloq erib, xamir qizarib pishguncha.</li>
+      <li><strong>Xizmat:</strong> Tayyor pizzani ustiga yangi reyhan barglari yoki zaytun qo‘shib bezang.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> 1 soat 20 daqiqa (xamir ko‘tarilishi bilan birga)</p>
+    <p><strong>Maslahat:</strong> Agar pishirgich toshi (pizza stone) bo‘lsa, undan foydalaning — natija yanada professional chiqadi.</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/ssBg61O_Wrg"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+},
+{
+  id:"c5",
+  title:"Nonushta: Omlet va Veggie Bowl",
+  img:"https://www.shutterstock.com/image-photo/classic-egg-omelette-served-cherry-600nw-1236840025.jpg",
+  short:"Sog'lom va to‘yimli nonushta uchun ikki ajoyib variant — omlet va veggie bowl.",
+  long:`
+    <h4>1. Omlet (klassik usulda):</h4>
+    <ul>
+      <li>Tuxum — 2–3 dona</li>
+      <li>Sut yoki suv — 2 osh qoshiq</li>
+      <li>Pishloq (qirg‘ichdan o‘tkazilgan) — 2 osh qoshiq</li>
+      <li>Sabzavotlar (pomidor, bulg‘or qalampiri, ismaloq, piyoz) — ixtiyoriy</li>
+      <li>Tuz va murch — ta’bga ko‘ra</li>
+      <li>Yog‘ — 1 osh qoshiq</li>
+    </ul>
+
+    <h4>Tayyorlash:</h4>
+    <ol>
+      <li>Tuxumni idishda sut, tuz va murch bilan aralashtiring.</li>
+      <li>Tovada yog‘ni qizdirib, sabzavotlarni 2–3 daqiqa qovuring.</li>
+      <li>Tuxum aralashmasini quyib, past olovda qopqoq ostida 3–4 daqiqa pishiring.</li>
+      <li>Pishloqni ustiga seping, eritilguncha biroz kuting. Issiq holda xizmat qiling.</li>
+    </ol>
+
+    <h4>2. Veggie Bowl (sog‘lom sabzavotli idish):</h4>
+    <ul>
+      <li>Quinoa (yoki guruch) — 100 g</li>
+      <li>Bulg‘or qalampiri — 1/2 dona</li>
+      <li>Brokoli — 100 g</li>
+      <li>Bodring, pomidor — ta’bga ko‘ra</li>
+      <li>Avokado (ixtiyoriy) — 1/2 dona</li>
+      <li>Limon sharbati — 1 osh qoshiq</li>
+      <li>Zaytun yog‘i — 1 osh qoshiq</li>
+      <li>Tuz, qora murch — ta’bga ko‘ra</li>
+    </ul>
+
+    <h4>Tayyorlash:</h4>
+    <ol>
+      <li>Quinoa yoki guruchni yumshoq holga kelguncha pishiring.</li>
+      <li>Brokoli va boshqa sabzavotlarni yengil bug‘lang yoki tovada qovuring.</li>
+      <li>Hamma mahsulotni idishga joylashtirib, ustidan limon sharbati va zaytun yog‘ini seping.</li>
+      <li>Aralashtirib, darhol xizmat qiling.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> 25–30 daqiqa</p>
+    <p><strong>Maslahat:</strong> Nonushtani yanada to‘yimli qilish uchun yoniga yangi mevalar yoki yashil choy qo‘shing.</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/VaMpLoUjCEI"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+}
+,
+{
+  id:"c6",
+  title:"Shirinlik: Chocolate Brownie",
+  img:"https://www.shutterstock.com/image-photo/delicious-chocolate-cakes-on-table-600nw-285362681.jpg",
+  short:"Oddiy, ammo juda mazali shokoladli brownie retsepti.",
+  long:`
+    <h4>Masalliqlar (8–10 bo‘lak uchun):</h4>
+    <ul>
+      <li>Qorong‘i shokolad — 200 g</li>
+      <li>Sariyog‘ — 150 g</li>
+      <li>Shakar — 180 g</li>
+      <li>Tuxum — 3 dona</li>
+      <li>Un — 100 g</li>
+      <li>Kakao kukuni — 2 osh qoshiq</li>
+      <li>Vanilin — 1/2 choy qoshiq (ixtiyoriy)</li>
+      <li>Tuz — bir chimdim</li>
+      <li>Yong‘oq yoki shokolad bo‘lakchalari — ixtiyoriy</li>
+    </ul>
+
+    <h4>Tayyorlash bosqichlari:</h4>
+    <ol>
+      <li><strong>Shokolad va sariyog‘ni eritish:</strong> Kichik idishda shokolad va sariyog‘ni suv bug‘ida (yoki mikroto‘lqinli pechda) eritib, aralashtiring va sal soviting.</li>
+      <li><strong>Tuxum va shakarni aralashtirish:</strong> Alohida idishda tuxum va shakarning silliq aralashmasini hosil qiling.</li>
+      <li><strong>Hammasini birlashtirish:</strong> Eritilgan shokoladni tuxum aralashmasiga qo‘shing, keyin elangan un, kakao, tuz va vanilinni solib aralashtiring. Agar xohlasangiz, yong‘oq yoki shokolad bo‘laklari ham qo‘shing.</li>
+      <li><strong>Pishirish:</strong> Tayyor massani pergament qog‘oz to‘shalgan qolipga quying. Oldindan 180°C ga qizdirilgan duxovkada 20–25 daqiqa pishiring.</li>
+      <li><strong>Sovutish:</strong> Brownieni pechdan olib, to‘liq sovutib oling, so‘ngra kvadrat bo‘laklarga kesing.</li>
+    </ol>
+
+    <p><strong>Vaqt:</strong> 35 daqiqa (tayyorlash + pishirish)</p>
+    <p><strong>Maslahat:</strong> Brownie ichki qismi biroz nam holatda qolsa, u mukammal! Haddan ortiq pishirmang.</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/vkO75x5y8TU"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+}
+,
+{ 
+  id: "c7", 
+  title: "Sushi (uy sharoitida)", 
+  img: "https://st4.depositphotos.com/19157714/31390/i/450/depositphotos_313903296-stock-photo-close-view-delicious-sushi-set.jpg", 
+  short: "Sushi tayyorlash asoslari.", 
+  long: `
+    <h4>Masalliqlar:</h4>
+    <ul>
+      <li>Sushi guruch — 200 g</li>
+      <li>Nori barglari — 2 dona</li>
+      <li>Baliq (losos yoki tuzlangan) — 100 g</li>
+      <li>Bodring va avokado</li>
+      <li>Soya sous, wasabi, zanjabil</li>
+    </ul>
+    <h4>Tayyorlanishi:</h4>
+    <ol>
+      <li>Guruchni pishirib, sirka, shakar va tuz bilan aralashtiring.</li>
+      <li>Norini yoyib, guruchni yupqa qilib ustiga yoying.</li>
+      <li>Ichiga baliq va sabzavotlarni qo‘ying, rulon shaklida o‘rang.</li>
+      <li>Bo‘laklarga kesib, sous bilan torting.</li>
+    </ol>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/KO-sDfzzqR4"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+},
+
+{ 
+  id:"c8", 
+  title:"Tayyorlanishi oson sho'rva (chicken soup)", 
+  img:"https://www.shutterstock.com/image-photo/chicken-stew-potato-carrot-red-600nw-2169632215.jpg", 
+  short:"Immunitetni mustahkamlovchi sho'rva.", 
+  long: `
+    <h4>Masalliqlar:</h4>
+    <ul>
+      <li>Tovuq go‘shti — 300 g</li>
+      <li>Suv — 1,5 litr</li>
+      <li>Sabzi — 1 dona</li>
+      <li>Kartoshka — 2 dona</li>
+      <li>Piyoz — 1 dona</li>
+      <li>Ziravorlar, tuz va ko‘katlar</li>
+    </ul>
+    <h4>Tayyorlanishi:</h4>
+    <ol>
+      <li>Tovuq go‘shtini suvda 20–25 daqiqa qaynatib oling.</li>
+      <li>Sabzi, piyoz va kartoshkani to‘g‘rab, sho‘rvaga qo‘shing.</li>
+      <li>Ziravorlar solib, yana 20–25 daqiqa past olovda pishiring.</li>
+      <li>Ustiga ko‘kat sepib, issiq holda torting.</li>
+    </ol>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/qhH131jxdvQ"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+},
+{
+  id:"c9",
+  title:"Salatlar: Grek salatasi",
+  img:"https://popmenucloud.com/cdn-cgi/image/width%3D600%2Cheight%3D600%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/umgxckeq/5448aac3-6ce2-4fab-a59a-a6971de55ebf.jpg",
+  short:"Tuzli va frisk salat.",
+  long: `
+    <h4>Masalliqlar:</h4>
+    <ul>
+      <li>Pomidor — 2 dona</li>
+      <li>Bodring — 1 dona</li>
+      <li>Qizil piyoz — 1/2 dona</li>
+      <li>Feta pishloq — 100 g</li>
+      <li>Qora zaytun — 10–12 dona</li>
+      <li>Zaytun yog‘i — 2 osh qoshiq</li>
+      <li>Oregano, tuz va murch — ta’bga ko‘ra</li>
+    </ul>
+    <h4>Tayyorlanishi:</h4>
+    <ol>
+      <li>Pomidor, bodring va piyozni kub shaklida to‘g‘rang.</li>
+      <li>Ustiga feta pishloqni va zaytunlarni qo‘shing.</li>
+      <li>Zaytun yog‘i, oregano, tuz va murch bilan aralashtiring.</li>
+      <li>Darhol yoki sovutilgan holda torting.</li>
+    </ol>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/pcQwZ_f9aZw"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+},
+
+   
+
+{
+  id:"c10",
+  title:"Desert: Tiramisu ",
+  img:"https://i0.wp.com/picjumbo.com/wp-content/uploads/homemade-dessert-tiramisu-served-in-individual-glasses.jpg?w=600&quality=80",
+  short:"Italiya klassik tatlisi.",
+  long: `
+    <h4>Masalliqlar:</h4>
+    <ul>
+      <li>Mascarpone — 250 g</li>
+      <li>Tuxum sarig‘i — 3 dona</li>
+      <li>Shakar — 3 osh qoshiq</li>
+      <li>Espresso yoki kuchli qahva — 150 ml</li>
+      <li>Ladyfinger (biskvit) — 10–12 dona</li>
+      <li>Kakao kukuni — bezatish uchun</li>
+    </ul>
+    <h4>Tayyorlanishi:</h4>
+    <ol>
+      <li>Tuxum sarig‘i va shakarni aralashtirib, ustiga mascarpone qo‘shing.</li>
+      <li>Biskvitlarni qahvaga botirib, idishning tagiga joylashtiring.</li>
+      <li>Ustiga krem surting, so‘ng yana biskvit qatlami qo‘ying.</li>
+      <li>Yuqoridan kakao sepib, 4–6 soat sovutkichda turing.</li>
+    </ol>
+    <p><strong>Vaqt:</strong> tayyorlash 20 daqiqa + sovutish 4–6 soat</p>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/wC_UrMA6rAE"
+  title="O'zbek palov tayyorlash (video retsept)" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+  `
+}
+
+  ],
+
+  "Yoga": [
+    /* 10 mashq: rasm, qanday qilish va foyda */
+{ 
+  id:"y1", 
+  title:"Mountain Pose (Tadasana)", 
+  img:"https://media.istockphoto.com/id/666305630/photo/young-attractive-woman-in-tadasana-pose-cozy-hotel-living-room.jpg?s=612x612&w=0&k=20&c=LzDeEvgG71LmIb6AziQbewRsJk8Yoenz2bdMyUyG_Vo=", 
+  short:"Asosiy turgan poz — tanani muvozanatga keltiradi.", 
+  long:`
+    <h4>Qanday qilinadi:</h4>
+    <ol>
+      <li>To‘g‘ri turing, oyoqlarni yelkangiz kengligida ajrating.</li>
+      <li>Oyoq panjalari biroz ichkariga qaratilgan bo‘lsin.</li>
+      <li>Qo‘llarni tanangiz yonida turing yoki kaftlarni yurak oldida tuting.</li>
+      <li>Boshni tik tuting, orqani tekislang.</li>
+      <li>Nafasingizni chuqur oling va chiqarishda yelkalarni pastga tushiring.</li>
+      <li>5–10 marotaba chuqur nafas olib-chiqarib, shu holatda turing.</li>
+    </ol>
+
+    <h4>Qancha vaqt kerak bo‘ladi:</h4>
+    <p>Yangi boshlovchilar uchun 1–2 daqiqa kifoya. Tajribali foydalanuvchilar esa 3–5 daqiqa davomida bu pozada turishlari mumkin.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Tanani to‘g‘ri holatda ushlab turishga o‘rgatadi.</li>
+      <li>Muvozanatni yaxshilaydi va gavdani mustahkamlaydi.</li>
+      <li>Stressni kamaytiradi va diqqatni jamlaydi.</li>
+      <li>Son, tizza va tovon mushaklarini mustahkamlaydi.</li>
+      <li>Har bir yoga mashg‘ulotini boshlash uchun eng yaxshi tayyorlov pozasi hisoblanadi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Tadasana oddiy ko‘rinsa ham, uni to‘g‘ri bajarish muhim. Har bir nafasda tanangizni his qilishga harakat qiling.</p>
+  
+<h4>Mountain pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/5NxDs-ovJU8"
+  title="Mountain pose (Yoga darsi)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+  `
+},
+{ 
+  id:"y2", 
+  title:"Downward Dog (Adho Mukha Svanasana)", 
+  img:"https://beyogi.com/wp-content/uploads/2015/03/Downward-Facing-Dog-Adho-Mukha-Svanasana.png?width=600&quality=70", 
+  short:"Orqa, oyoq va qo‘l mushaklarini cho‘zuvchi mashq.", 
+  long:`
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>Qo‘llar va tizzalarni yerga qo‘ying, to‘rt oyoqli holatda boshlang.</li>
+      <li>Qo‘llarni yelkalar kengligida, tizzalarni esa son kengligida joylashtiring.</li>
+      <li>Oyoqlarni tovon bilan yerga bosib, dumba qismini yuqoriga ko‘taring.</li>
+      <li>Boshni qo‘llar orasida osiltiring, orqani tekis tuting.</li>
+      <li>3–5 marotaba chuqur nafas olib-chiqaring, pozani saqlab turing.</li>
+    </ol>
+
+    <h4>Qancha vaqt bajariladi:</h4>
+    <p>Boshlovchilar uchun 30 soniya – 1 daqiqa yetarli. Tajribali foydalanuvchilar 2–3 daqiqa davomida tura olishadi.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Orqa, yelka, hamstring va buzoq mushaklarini cho‘zadi.</li>
+      <li>Qon aylanishini yaxshilaydi va boshni kislorod bilan boyitadi.</li>
+      <li>Stressni kamaytiradi va butun tanani uyg‘otadi.</li>
+      <li>Qo‘l va oyoq mushaklarini kuchaytiradi.</li>
+      <li>Orqa og‘riqlarini kamaytirishga yordam beradi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Agar tizzalar yoki bilaklarda og‘riq sezilsa, tizzani biroz bukib yoki yostiq qo‘yib mashqni yengillashtiring.</p>
+ 
+<h4>Downward Dog Pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/ayQoxw8sRTk"
+  title="Downward Dog Pose (Yoga)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+    `
+}
+,
+ { 
+  id:"y3", 
+  title:"Warrior II (Virabhadrasana II)", 
+  img:"https://cdn.create.vista.com/api/media/small/245334198/stock-photo-senior-couple-standing-warrior-poses-yoga-mats-park", 
+  short:"Kuch, barqarorlik va muvozanat uchun klassik yoga pozasi.", 
+  long:`
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>To‘g‘ri turing, so‘ng bir oyog‘ingizni orqaga katta qadam bilan tashlang.</li>
+      <li>Oldingi tizzani 90° ga yaqin buking, orqa oyog‘ingizni tekis tuting.</li>
+      <li>Qo‘llarni yelkalar bilan bir chiziqda ikki tomonga cho‘zing.</li>
+      <li>Boshingizni oldingi qo‘l yo‘nalishiga qaratib, chuqur nafas oling.</li>
+      <li>Pozani 30 soniya – 1 daqiqa davomida ushlab turing, so‘ng oyoqlarni almashtiring.</li>
+    </ol>
+
+    <h4>Qiyinchilik darajasi:</h4>
+    <p>O‘rta daraja — boshlovchilar ham bajara oladi, ammo muvozanatni saqlashga e’tibor berish kerak.</p>
+
+    <h4>Bajarish vaqti:</h4>
+    <p>Har bir tomonda 30 soniya – 1 daqiqa. 2–3 marotaba takrorlansa yetarli.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Oyoq va dumba mushaklarini kuchaytiradi.</li>
+      <li>Barqarorlik va muvozanatni yaxshilaydi.</li>
+      <li>Yelkalar va ko‘krakni ochadi, nafas olishni chuqurlashtiradi.</li>
+      <li>Diqqatni jamlashni va ichki kuchni rivojlantiradi.</li>
+      <li>Umurtqa pog‘onasining holatini yaxshilaydi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Tizzani tovon bilan bir chiziqda tuting; oldinga juda egilmaslikka harakat qiling. Orqa oyog‘ingizni to‘liq yerga tekkizib turing.</p>
+ 
+<h4>Warrior II Pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/kkGY3xBnaGc"
+  title="Warrior II Pose (Yoga)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+    `
+}
+,
+ { 
+  id:"y4", 
+  title:"Tree Pose (Vrikshasana)", 
+  img:"https://st4.depositphotos.com/13193824/20064/i/450/depositphotos_200644222-stock-photo-athletic-woman-practicing-yoga-tree.jpg", 
+  short:"Balans va diqqatni oshiruvchi klassik poz.", 
+  long:`
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>To‘g‘ri turing (Tadasana pozasida boshlang).</li>
+      <li>Bir oyog‘ingizni ko‘tarib, tizzaning ichki qismiga yoki sonning yuqori qismiga qo‘ying (tizzaning ustiga emas!).</li>
+      <li>Qo‘llarni ko‘krak oldida birlashtiring yoki boshingiz uzra yuqoriga cho‘zing.</li>
+      <li>Diqqatni oldindagi bir nuqtaga qarating va chuqur nafas oling.</li>
+      <li>30 soniyadan 1 daqiqagacha shu holatda turing, so‘ng oyoqlarni almashtiring.</li>
+    </ol>
+
+    <h4>Qiyinchilik darajasi:</h4>
+    <p>O‘rta daraja — muvozanatni saqlash biroz mashq talab qiladi, lekin tinch nafas olish yordam beradi.</p>
+
+    <h4>Bajarish vaqti:</h4>
+    <p>Har bir tomonda 30–60 soniya ushlab turish tavsiya etiladi. 2–3 marta takrorlash mumkin.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Muvozanat va konsentratsiyani kuchaytiradi.</li>
+      <li>Oyoq mushaklarini mustahkamlaydi.</li>
+      <li>Tinchlik va ichki barqarorlik hissini beradi.</li>
+      <li>Umurtqa pog‘onasini to‘g‘ri tutishga yordam beradi.</li>
+      <li>Stressni kamaytiradi va diqqatni oshiradi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Agar muvozanatni saqlash qiyin bo‘lsa, devorga yaqin turing yoki qo‘lingizni engil tayantiring. Tizzaga to‘g‘ridan-to‘g‘ri bosim bermang.</p>
+  
+<h4>Tree Pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/uELr6MPi7pI"
+  title="Tree Pose (Yoga)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+    `
+}
+,
+{ 
+  id:"y5", 
+  title:"Child's Pose (Balasana)", 
+  img:"https://www.shutterstock.com/image-photo/full-body-side-view-young-600nw-2315376879.jpg", 
+  short:"Dam olish va cho'zilish uchun eng tinch yoga pozasi.", 
+  long:`
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>Polga tizzalab o‘tirib, tovonlaringiz ustiga orqaga cho‘zing.</li>
+      <li>Tizzalarni biroz ajrating, sonlar orasidan gavdani pastga egib, peshonani yerga qo‘ying.</li>
+      <li>Qo‘llarni oldinga cho‘zing yoki tanangiz bo‘ylab orqaga tushiring — sizga qulayroq bo‘lganini tanlang.</li>
+      <li>Nafas olishni tinch va chuqur holatda ushlab turing.</li>
+      <li>Bu holatda 1–3 daqiqa davomida qoling.</li>
+    </ol>
+
+    <h4>Qiyinchilik darajasi:</h4>
+    <p>Oson — boshlovchilar uchun ham qulay va xavfsiz pozadir.</p>
+
+    <h4>Bajarish vaqti:</h4>
+    <p>1–3 daqiqa davomida ushlab turish mumkin. Nafasni tinch holatda saqlash muhim.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Stressni kamaytiradi va asab tizimini tinchlantiradi.</li>
+      <li>Bel, bo‘yinning orqa qismi va yelkalarni yumshatadi.</li>
+      <li>Qon aylanishini yaxshilaydi va mushaklardagi taranglikni kamaytiradi.</li>
+      <li>Ichki tinchlik va meditatsiya holatini yaratadi.</li>
+      <li>Dam olish mashqi sifatida boshqa pozalar orasida foydalaniladi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Agar tizzalarda noqulaylik sezsangiz, ularning orasiga yostiq yoki sochiq qo‘ying. Peshonani yerga bosolmasangiz, qo‘l tagiga yostiqcha qo‘ying.</p>
+ 
+<h4>Child's pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/nMp3MlTz9fA"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+    `
+},
+{ 
+  id:"y6", 
+  title:"Bridge Pose (Setu Bandha Sarvangasana)", 
+  img:"https://www.shutterstock.com/image-photo/fitness-man-doing-bodyweight-glute-600nw-767827078.jpg", 
+  short:"Bel, oyoq va yelka mushaklarini kuchaytiruvchi yoga pozasi.", 
+  long:`
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>Orqangiz bilan yoting, tizzalarni buking va oyoqlarni son kengligida joylashtiring.</li>
+      <li>Qo‘llaringizni tanangiz bo‘ylab pastga cho‘zing, kaftlar yerga qaragan holda bo‘lsin.</li>
+      <li>Nafas olib, asta-sekin dumba va belni yuqoriga ko‘tarib, yelkalarni polga bosib turing.</li>
+      <li>Tizzalar, sonlar va yelkalar bir chiziqda bo‘lishiga harakat qiling.</li>
+      <li>30 soniya – 1 daqiqa shu holatda turing, so‘ng asta-sekin pastga tushing.</li>
+    </ol>
+
+    <h4>Qiyinchilik darajasi:</h4>
+    <p>O‘rta — boshlovchilar uchun mos, ammo to‘g‘ri nafas olish va muvozanatga e’tibor kerak.</p>
+
+    <h4>Bajarish vaqti:</h4>
+    <p>30 soniya – 1 daqiqa ushlab turing. 2–3 marotaba takrorlash tavsiya etiladi.</p>
+
+    <h4>Foydasi:</h4>
+    <ul>
+      <li>Bel va dumba mushaklarini mustahkamlaydi.</li>
+      <li>Yelkalar, ko‘krak va umurtqa pog‘onasini cho‘zadi.</li>
+      <li>Qon aylanishini yaxshilaydi, yurak faoliyatini qo‘llab-quvvatlaydi.</li>
+      <li>Stressni kamaytiradi va tanani tinchlantiradi.</li>
+      <li>Siydik tizimi va ovqat hazm qilish organlari faoliyatiga foydali ta’sir qiladi.</li>
+    </ul>
+
+    <h4>Eslatma:</h4>
+    <p>Agar belda og‘riq bo‘lsa, pastki qism ostiga yostiqcha qo‘ying. Bo‘yin mushaklarini zo‘riqtirmang — yelkalar va oyoqlarga tayaning.</p>
+  
+<h4>Bridge pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/IV9Y-52NOY0"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+    `
+}
+,{ 
+  id: "y7", 
+  title: "Plank Pose", 
+  img: "https://www.shutterstock.com/image-photo/handsome-man-exercising-gym-posing-600nw-1132378049.jpg", 
+  short: "Core kuchini oshiradi va muvozanatni yaxshilaydi", 
+  long: `
+    <h4>Plank Pose (Taxta holati)</h4>
+    <p><b>Plank</b> – bu eng samarali, ammo ko‘p hollarda e’tibordan chetda qoladigan mashqlardan biridir. U butun tanani, ayniqsa <b>qorin mushaklari</b>, <b>bel</b>, <b>qo‘l</b> va <b>oyoqlarni</b> mustahkamlaydi.</p>
+    
+    <h4>Foydalari:</h4>
+    <ul>
+      <li>Qorin (core) mushaklarini kuchaytiradi va bel og‘rig‘ini kamaytiradi.</li>
+      <li>Orqa va elkalarni to‘g‘ri holatda ushlashni o‘rgatadi.</li>
+      <li>Muvozanatni yaxshilaydi va jismoniy barqarorlikni oshiradi.</li>
+      <li>Qomatni tiklaydi va chiroyli holatni shakllantiradi.</li>
+      <li>Stressni kamaytirib, diqqatni jamlashga yordam beradi.</li>
+    </ul>
+
+    <h4>Qanday bajariladi:</h4>
+    <ol>
+      <li>Qo‘llaringizni yelka kengligida joylashtirib, tirsaklarni to‘g‘ri tuting.</li>
+      <li>Oyoqlarni orqaga cho‘zing, tanangiz boshdan to tovonlargacha to‘g‘ri chiziq hosil qilsin.</li>
+      <li>Qorinni ichga torting, bo‘yin va elka bo‘sh tursin.</li>
+      <li>30 soniyadan boshlang, keyin 1 daqiqagacha oshirib boring.</li>
+    </ol>
+
+    <h4>Maslahatlar:</h4>
+    <ul>
+      <li>Naqadar uzoq tura olsangiz ham, <b>to‘g‘ri shakl</b>ni saqlash eng muhimi.</li>
+      <li>Plankni har kuni 2–3 marta bajarish tanangizni tezda mustahkamlaydi.</li>
+      <li>Qo‘shimcha murakkablik uchun yon plank (side plank) yoki tizza bilan plank variantlarini sinab ko‘ring.</li>
+    </ul>
+
+    <p><i>Bu mashqni muntazam bajarsangiz, nafaqat tanangiz kuchayadi, balki ichki ishonchingiz ham ortadi.</i></p>
+  
+<h4>Plank pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/ASdvN_XEl_c"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+
+
+{ 
+  id: "y8", 
+  title: "Cobra Pose (Bhujangasana)", 
+  img: "https://www.shutterstock.com/image-photo/focused-biracial-man-practicing-yoga-600nw-2341124165.jpg", 
+  short: "Orqa mushaklarini cho'zadi", 
+  long: `<h4>Qanday bajariladi:</h4>
+  <ol>
+    <li>Qorin bilan pastga yoting, qo‘llaringizni yelkalar ostiga qo‘ying.</li>
+    <li>Nafas olib, ko‘kragingizni asta-sekin yuqoriga ko‘taring.</li>
+    <li>Belni haddan ortiq egmang, bo‘yningizni bo‘sh qo‘ying.</li>
+  </ol>
+  <h4>Vaqt:</h4>
+  <p>20–30 soniya ushlab turing, 2–3 marta takrorlang.</p>
+  <h4>Foydasi:</h4>
+  <p>Orqa mushaklarini kuchaytiradi, umurtqani cho‘zadi, nafas olishni yaxshilaydi va stressni kamaytiradi.</p>
+<h4>Cobra pose:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/WeIuxSLvxe0"
+  title="Cobra Pose (Bhujangasana)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+
+  ` 
+},
+{ 
+  id:"y9", 
+  title:"Seated Forward Bend (Paschimottanasana)", 
+  img:"https://beyogi.b-cdn.net/wp-content/uploads/2015/03/Seated-Forward-Bend-Paschimottanasana-1024x683.png?width=600&quality=70", 
+  short:"Hamstring va bel cho'zish", 
+  long:`<h4>Qanday bajariladi:</h4>
+  <ol>
+    <li>Polga o'tiring, oyoqlaringizni to‘g‘ri cho‘zing.</li>
+    <li>Nafas olib, qo‘llaringizni yuqoriga ko‘taring.</li>
+    <li>Nafas chiqarayotib, asta-sekin oldinga egiling va oyoq panjalariga yetishga harakat qiling.</li>
+    <li>Belni zo‘riqtirmang, bo‘shashtiring.</li>
+  </ol>
+  <h4>Vaqt:</h4>
+  <p>20–40 soniya ushlab turing, 2–3 marotaba takrorlang.</p>
+  <h4>Foydasi:</h4>
+  <p>Hamstring mushaklarini cho‘zadi, beldagi og‘riqlarni kamaytiradi, asab tizimini tinchlantiradi va moslashuvchanlikni oshiradi.</p>
+  
+  <h4>Seated Forward Bend:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/5njnlgYYdD4"
+  title="Seated Forward Bend Pose (Paschimottanasana)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+  ` 
+},
+{ 
+  id:"y10", 
+  title:"Legs-Up-The-Wall (Viparita Karani)", 
+  img:"https://images.ctfassets.net/0k812o62ndtw/3nDjKZmfiPfxe5sJOmfosH/683080a2e0362d922b5e299f83162391/Shutterstock_1392538457.jpg", 
+  short:"Qon aylanishini tiklaydi", 
+  long:`<h4>Qanday bajariladi:</h4>
+  <ol>
+    <li>Orqangizga yoting va oyoqlaringizni devorga parallel qilib yuqoriga ko‘taring.</li>
+    <li>Qo‘llaringizni yon tomonga yoki qorin ustiga qo‘ying.</li>
+    <li>Ko‘zlarni yuming va chuqur nafas oling.</li>
+  </ol>
+  <h4>Vaqt:</h4>
+  <p>5–10 daqiqa davomida shu holatda turing, to‘liq dam oling.</p>
+  <h4>Foydasi:</h4>
+  <p>Qon aylanishini yaxshilaydi, oyoqlardagi shishlarni kamaytiradi, stressni kamaytiradi va yurak faoliyatini tinchlantiradi.</p>
+  
+  <h4>Legs up the wall:</h4>
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/wb5H7nSceFQ"
+  title="Legs Up the Wall Pose (Viparita Karani)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+` 
+}
+],
+  "English": [
+  { 
+  id: " Day 1 ", 
+  title: "Beginner level", 
+  short: " ", 
+  long: `<h4> Vocabulary :</h4>
+    <h4> Kunlik 10 ta so'z:</h4>
+    <ol>
+      <li> hello – salom</li>
+  <li>hi – salom</li>
+  <li>goodbye – xayr</li>
+  <li> please – iltimos</li>
+  <li>thank you – rahmat</li>
+  <li>yes – ha</li>
+  <li>no – yo‘q</li>
+  <li>sorry – kechirasiz</li>
+  <li>excuse me – uzr bering</li>
+  <li>good morning – xayrli tong</li>
+  </ol>
+<h4>Headway Unit 1</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/mgo-wzpqMo8"
+  title="Hello !" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+    `
+  },
+{ 
+  id: "Day 2", 
+  title: "Beginner level", 
+  short: "11-20", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>good night – xayrli tun</li>
+<li>how are you? – qalaysiz?</li>
+<li>I’m fine – men yaxshiman</li>
+<li>what’s your name? – ismingiz nima?</li>
+<li>my name is... – mening ismim...</li>
+<li>nice to meet you – tanishganimdan xursandman</li>
+<li>where – qayerda</li>
+<li>when – qachon</li>
+<li>who – kim</li>
+<li>what – nima</li>
+</ol>
+<h4>Headway Unit 2</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/eL-M-IP39rw"
+  title="About me" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>`
+
+},
+{ 
+  id: "Day 3", 
+  title: "Beginner level", 
+  short: "21-30", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>why – nima uchun</li>
+<li>how – qanday</li>
+<li>this – bu</li>
+<li>that – u</li>
+<li>here – bu yerda</li>
+<li>there – u yerda</li>
+<li>man – erkak</li>
+<li>woman – ayol</li>
+<li>boy – o‘g‘il bola</li>
+<li>girl – qiz bola</li>
+</ol>
+<h4>Headway Unit 3</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/6M29ZCepHe8"
+  title="About Paula" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 4", 
+  title: "Beginner level",  
+  short: "31-40", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>child – bola</li>
+<li>family – oila</li>
+<li>father – ota</li>
+<li>mother – ona</li>
+<li>brother – aka/uka</li>
+<li>sister – opa/singil</li>
+<li>friend – do‘st</li>
+<li>teacher – o‘qituvchi</li>
+<li>student – o‘quvchi</li>
+<li>school – maktab</li>
+</ol>
+<h4>Headway Unit 4</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/ZymqomrchVA"
+  title="Profile" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 5", 
+  title: "Beginner level", 
+  short: "41-50", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>book – kitob</li>
+<li>pen – ruchka</li>
+<li>pencil – qalam</li>
+<li>table – stol</li>
+<li>chair – stul</li>
+<li>door – eshik</li>
+<li>window – deraza</li>
+<li>room – xona</li>
+<li>house – uy</li>
+<li>city – shahar</li>
+</ol>
+<h4>Headway Unit 5</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/zMgAol-G3EM"
+  title="International food" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 6", 
+  title: "Beginner level", 
+  short: "51-60", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>village – qishloq</li>
+<li>street – ko‘cha</li>
+<li>car – mashina</li>
+<li>bus – avtobus</li>
+<li>train – poyezd</li>
+<li>plane – samolyot</li>
+<li>food – ovqat</li>
+<li>water – suv</li>
+<li>bread – non</li>
+<li>tea – choy</li>
+</ol>
+<h4>Headway Unit 6</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/0zjsj7FIUqc"
+  title="Sara's day" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 7", 
+  title: "Beginner level", 
+  short: "61-70", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>coffee – qahva</li>
+<li>milk – sut</li>
+<li>fruit – meva</li>
+<li>apple – olma</li>
+<li>banana – banan</li>
+<li>orange – apelsin</li>
+<li>rice – guruch</li>
+<li>meat – go‘sht</li>
+<li>fish – baliq</li>
+<li>egg – tuxum</li>
+</ol>
+<h4>Headway Unit 7</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/j0AQINfqlsw"
+  title="Antique market" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 8", 
+  title: "Beginner level", 
+  short: "71-80", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>day – kun</li>
+<li>night – tun</li>
+<li>morning – tong</li>
+<li>evening – kechqurun</li>
+<li>today – bugun</li>
+<li>tomorrow – ertaga</li>
+<li>yesterday – kecha</li>
+<li>time – vaqt</li>
+<li>hour – soat</li>
+<li>minute – daqiqa</li>
+</ol>
+<h4>Headway Unit 8</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/_y25lvyBAEg"
+  title="Home sweet home" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 9", 
+  title: "Beginner level", 
+  short: "81-90", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>second – soniya</li>
+<li>sun – quyosh</li>
+<li>moon – oy</li>
+<li>star – yulduz</li>
+<li>sky – osmon</li>
+<li>rain – yomg‘ir</li>
+<li>snow – qor</li>
+<li>wind – shamol</li>
+<li>hot – issiq</li>
+<li>cold – sovuq</li>
+</ol>
+<h4>Headway Unit 9:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/BDtjoWVcXaE"
+  title="Steve life and job" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 10", 
+  title: "Beginner level", 
+  short: "91-100", 
+  long: `<h4>Vocabulary :</h4>
+    <h4>Kunlik 10 ta so'z:</h4>
+    <ol>
+<li>big – katta</li>
+<li>small – kichik</li>
+<li>good – yaxshi</li>
+<li>bad – yomon</li>
+<li>happy – baxtli</li>
+<li>sad – g‘amgin</li>
+<li>love – sevgi</li>
+<li>work – ish</li>
+<li>play – o‘ynash</li>
+<li>sleep – uxlash</li>
+</ol>
+
+`
+},
+{ 
+  id: "Day 11", 
+  title: "Beginner level", 
+  short: "101-110", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>beautiful – chiroyli</li>
+  <li>interesting – qiziqarli</li>
+  <li>important – muhim</li>
+  <li>difficult – qiyin</li>
+  <li>easy – oson</li>
+  <li>expensive – qimmat</li>
+  <li>cheap – arzon</li>
+  <li>different – boshqacha</li>
+  <li>same – bir xil</li>
+  <li>dangerous – xavfli</li>
+  </ol>
+<h4>Headway Unit 11:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/lSn1wvKzoOc"
+  title="Living craft show" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 12", 
+  title: "Beginner level", 
+  short: "111-120", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>clean – toza</li>
+  <li>dirty – kir</li>
+  <li>strong – kuchli</li>
+  <li>weak – zaif</li>
+  <li>fast – tez</li>
+  <li>slow – sekin</li>
+  <li>early – erta</li>
+  <li>late – kech</li>
+  <li>hard – qattiq</li>
+  <li>soft – yumshoq</li>
+  </ol>
+
+<h4>Headway Unit 12:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/OJyTJIN-g8A"
+  title="Los Angeles truck food" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 13", 
+  title: "Beginner level", 
+  short: "121-130", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>begin – boshlamoq</li>
+  <li>end – tugamoq</li>
+  <li>open – ochmoq</li>
+  <li>close – yopmoq</li>
+  <li>come – kelmoq</li>
+  <li>go – bormoq</li>
+  <li>run – yugurmoq</li>
+  <li>walk – yurmoq</li>
+  <li>sit – o‘tirmoq</li>
+  <li>stand – turmoq</li>
+  </ol>
+<h4>Headway Unit 13:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/6mrJwPOv9CM"
+  title="Clothes" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 14", 
+  title: "Beginner level", 
+  short: "131-140", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>read – o‘qimoq</li>
+  <li>write – yozmoq</li>
+  <li>listen – tinglamoq</li>
+  <li>hear – eshitmoq</li>
+  <li>see – ko‘rmoq</li>
+  <li>look – qaramoq</li>
+  <li>watch – tomosha qilmoq</li>
+  <li>say – aytmoq</li>
+  <li>speak – gapirmoq</li>
+  <li>tell – so‘zlamoq</li>
+  </ol>
+<h4>Headway Unit 14:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  title="Holiday" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 15", 
+  title: "Beginner level", 
+  short: "141-150", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>eat – yemoq</li>
+  <li>drink – ichmoq</li>
+  <li>sleep – uxlash</li>
+  <li>wake up – uyg‘onmoq</li>
+  <li>work – ishlamoq</li>
+  <li>study – o‘qimoq</li>
+  <li>play – o‘ynamoq</li>
+  <li>cook – ovqat pishirmoq</li>
+  <li>drive – haydamoq</li>
+  <li>swim – suzmoq</li>
+  </ol>
+<h4>Headway Unit 15:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/YfqraD68Ppw"
+  title="I love shop!" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 16", 
+  title: "Beginner level", 
+  short: "151-160", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>buy – sotib olmoq</li>
+  <li>sell – sotmoq</li>
+  <li>help – yordam bermoq</li>
+  <li>find – topmoq</li>
+  <li>lose – yo‘qotmoq</li>
+  <li>make – yasamoq</li>
+  <li>build – qurmoq</li>
+  <li>cut – kesmoq</li>
+  <li>break – sindirmoq</li>
+  <li>fix – tuzatmoq</li>
+  </ol>
+<h4>Headway Unit 16:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/HM-sIsbgyvk"
+  title="Around the world" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 17", 
+  title: "Beginner level", 
+  short: "161-170", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>happy – baxtli</li>
+  <li>angry – jahli chiqqan</li>
+  <li>tired – charchagan</li>
+  <li>hungry – och</li>
+  <li>thirsty – chanqagan</li>
+  <li>busy – band</li>
+  <li>free – bo‘sh</li>
+  <li>ready – tayyor</li>
+  <li>sure – ishonchli</li>
+  <li>afraid – qo‘rqqan</li>
+  </ol>
+  <h4>Headway Unit 1</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/Uat46hipx48"
+  title="Three plus one" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 18", 
+  title: "Beginner level", 
+  short: "171-180", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>always – har doim</li>
+  <li>usually – odatda</li>
+  <li>often – tez-tez</li>
+  <li>sometimes – ba'zida</li>
+  <li>rarely – kamdan-kam</li>
+  <li>never – hech qachon</li>
+  <li>today – bugun</li>
+  <li>tonight – bu tun</li>
+  <li>soon – tez orada</li>
+  <li>now – hozir</li>
+  </ol>
+  <h4>Headway Unit 2</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/mZ0cPfpNbOI"
+  title="A new neighbour" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 19", 
+  title: "Beginner level", 
+  short: "181-190", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>before – oldin</li>
+  <li>after – keyin</li>
+  <li>first – birinchi</li>
+  <li>next – keyingi</li>
+  <li>last – oxirgi</li>
+  <li>then – keyin</li>
+  <li>again – yana</li>
+  <li>soon – tez orada</li>
+  <li>late – kech</li>
+  <li>early – erta</li>
+  </ol>
+<h4>Headway Unit 3</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/wAntWGAWGLE"
+  title="A clean sweep" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 20", 
+  title: "Beginner level", 
+  short: "191-200", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>family – oila</li>
+  <li>parents – ota-onalar</li>
+  <li>children – bolalar</li>
+  <li>husband – er</li>
+  <li>wife – xotin</li>
+  <li>uncle – amaki/tog‘a</li>
+  <li>aunt – amma/xola</li>
+  <li>cousin – amakivachcha</li>
+  <li>grandfather – bobo</li>
+  <li>grandmother – buvi</li>
+  </ol>
+  <h4>Headway Unit 4</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/L9O1bb52gz8"
+  title="A new neighbour 2" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+<h4>Headway</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/kv85NqmJ0Is"
+  title="Twins" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+
+`
+},
+{ 
+  id: "Day 21", 
+  title: "Beginner level", 
+  short: "201-210", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>achievement – yutuq</li>
+  <li>challenge – sinov</li>
+  <li>experience – tajriba</li>
+  <li>knowledge – bilim</li>
+  <li>success – muvaffaqiyat</li>
+  <li>failure – muvaffaqiyatsizlik</li>
+  <li>decision – qaror</li>
+  <li>opportunity – imkoniyat</li>
+  <li>goal – maqsad</li>
+  <li>progress – rivojlanish</li>
+  </ol>
+<h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/4BPZ20a6yb0"
+  title="About me" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 22", 
+  title: "Beginner level", 
+  short: "211-220", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>environment – atrof-muhit</li>
+  <li>pollution – ifloslanish</li>
+  <li>climate – iqlim</li>
+  <li>temperature – harorat</li>
+  <li>energy – energiya</li>
+  <li>electricity – elektr</li>
+  <li>recycle – qayta ishlamoq</li>
+  <li>protect – himoya qilmoq</li>
+  <li>nature – tabiat</li>
+  <li>planet – sayyora</li>
+  </ol>
+<h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/4BPZ20a6yb0"
+  title="About me" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+`
+},
+{ 
+  id: "Day 23", 
+  title: "Beginner level", 
+  short: "221-230", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>health – sog‘liq</li>
+  <li>doctor – shifokor</li>
+  <li>medicine – dori</li>
+  <li>pain – og‘riq</li>
+  <li>injury – jarohat</li>
+  <li>treatment – davolash</li>
+  <li>disease – kasallik</li>
+  <li>exercise – mashq</li>
+  <li>diet – parhez</li>
+  <li>patient – bemor</li>
+  </ol>
+  <h4>Headway</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/SgBfhwmUDWk"
+  title="Let's go" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 24", 
+  title: "Beginner level", 
+  short: "231-240", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>business – biznes</li>
+  <li>company – kompaniya</li>
+  <li>employee – xodim</li>
+  <li>employer – ish beruvchi</li>
+  <li>salary – maosh</li>
+  <li>meeting – uchrashuv</li>
+  <li>project – loyiha</li>
+  <li>success – muvaffaqiyat</li>
+  <li>profit – foyda</li>
+  <li>market – bozor</li>
+  </ol>
+  <h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/2lxvNnGkdTo"
+  title="What is your favourite snack" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 25", 
+  title: "Beginner level", 
+  short: "241-250", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>technology – texnologiya</li>
+  <li>computer – kompyuter</li>
+  <li>software – dasturiy ta'minot</li>
+  <li>hardware – uskuna</li>
+  <li>internet – internet</li>
+  <li>network – tarmoq</li>
+  <li>device – qurilma</li>
+  <li>update – yangilamoq</li>
+  <li>download – yuklab olmoq</li>
+  <li>install – o‘rnatmoq</li>
+  </ol>
+  <h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/vNQUAtFQf9A"
+  title="What makes a good citizen" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 26", 
+  title: "Beginner level", 
+  short: "251-260", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>art – san’at</li>
+  <li>music – musiqa</li>
+  <li>painting – rasm</li>
+  <li>dance – raqs</li>
+  <li>film – film</li>
+  <li>actor – aktyor</li>
+  <li>actress – aktrisa</li>
+  <li>song – qo‘shiq</li>
+  <li>stage – sahna</li>
+  <li>audience – tomoshabin</li>
+  </ol>
+  <h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/bq6GBbh3uhU"
+  title="What do you do every day" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 27", 
+  title: "Beginner level", 
+  short: "261-270", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>travel – sayohat qilmoq</li>
+  <li>journey – safar</li>
+  <li>trip – sayohat</li>
+  <li>holiday – ta’til</li>
+  <li>flight – parvoz</li>
+  <li>airport – aeroport</li>
+  <li>ticket – chipta</li>
+  <li>passport – pasport</li>
+  <li>luggage – yuk</li>
+  <li>tourist – sayyoh</li>
+  </ol>
+  <h4>Headway:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/wr-v6RJ594s"
+  title="Have you ever seen a whale?" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 28", 
+  title: "Beginner level", 
+  short: "271-280", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>culture – madaniyat</li>
+  <li>tradition – an’ana</li>
+  <li>history – tarix</li>
+  <li>language – til</li>
+  <li>education – ta’lim</li>
+  <li>university – universitet</li>
+  <li>science – fan</li>
+  <li>research – tadqiqot</li>
+  <li>knowledge – bilim</li>
+  <li>discovery – kashfiyot</li>
+  </ol>
+  <h4>Headway</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/26PrgjTboVQ"
+  title="Are you following dreams?" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 29", 
+  title: "Beginner level", 
+  short: "281-290", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>freedom – erkinlik</li>
+  <li>justice – adolat</li>
+  <li>responsibility – mas’uliyat</li>
+  <li>respect – hurmat</li>
+  <li>honesty – halollik</li>
+  <li>kindness – mehribonlik</li>
+  <li>courage – jasorat</li>
+  <li>patience – sabr</li>
+  <li>faith – e’tiqod</li>
+  <li>hope – umid</li>
+  </ol>
+  <h4>Headway</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/mpxwlItsDA8"
+  title="Can we live without plastic" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+`
+},
+{ 
+  id: "Day 30", 
+  title: "Beginner level", 
+  short: "291-300", 
+  long: `<h4>Vocabulary :</h4>
+  <h4>Kunlik 10 ta so'z:</h4>
+  <ol>
+  <li>future – kelajak</li>
+  <li>past – o‘tmish</li>
+  <li>present – hozirgi</li>
+  <li>dream – orzu</li>
+  <li>plan – reja</li>
+  <li>choice – tanlov</li>
+  <li>change – o‘zgarish</li>
+  <li>success – muvaffaqiyat</li>
+  <li>failure – muvaffaqiyatsizlik</li>
+  <li>life – hayot</li>
+  </ol>
+<h4>Video retsept:</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/c1KFqXL0I0Q"
+  title="Talking about social media" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+`
+}
+],
+/* --- TENNIS BO‘LIMI TO‘LIQ YANGILANGAN --- */
+
+"Tennis": [
+  {
+    id: "t1",
+    title: "Tennis tarixi",
+    img: "https://scpr.brightspotcdn.com/dims4/default/784cbc9/2147483647/strip/true/crop/1600x1027+0+117/resize/690x443!/quality/90/?url=http%3A%2F%2Fscpr-brightspot.s3.us-west-2.amazonaws.com%2Fa5%2F78%2Fb572543c4fec9288aa3283c6d049%2Fnpr-tennis.jpeg",
+    short: "Tennisning kelib chiqishi, rivojlanish tarixi va zamonaviy turnirlar haqida.",
+    long: `<h4>Tennis tarixi</h4>
+           <p>Angliyaning Birmingem shahrida ixtiro qilingan, an'anaviy ravishda maysazor tennisi deb ataladigan raketka sporti hozirda oddiy tennis nomi bilan mashhur bo'lib, bugungi kunda yanada murakkab qoidalarga ega alohida sport turi sifatida o'ynalib kelinayotgan haqiqiy tennis yoki qirollik tennisining bevosita avlodidir. Ko'pgina (maysa) tennis qoidalari ushbu prekursordan kelib chiqadi va ikkala sport turini bir xil o'yinning o'zgarishi sifatida ko'rish maqsadga muvofiqdir. Ko'pgina tarixchilarning fikricha, tennis 12-asrda Shimoliy Fransiyadagi monastir monastirlarida paydo boʻlgan, ammo keyinchalik to'p qo'lning kafti bilan urilgan; demak, jeu de paume ("xurmo o'yini") nomi.[1] Faqat 16-asrga kelib raketkalar qoʻllanila boshlandi va oʻyin “tennis” deb atala boshlandi. Bu Angliya va Fransiyada mashhur edi va angliyalik Genrix VIII hozirda haqiqiy tennis deb ataladigan o'yinning katta muxlisi edi.</p>
+  <p>Ko'pgina original tennis kortlari, shu jumladan Oksford, Kembrij, Fayfdagi Folklend saroyi, Shotlandiya qirolichasi Meri muntazam o'ynagan va Xempton kort saroyi saqlanib qolgan. Fransiya inqilobi bilan birga kelgan terror tufayli ko'plab fransuz sudlari ishdan bo'shatildi. Tennis korti qasamyodi (Serment du Jeu de Paume) Fransiya inqilobining birinchi kunlarida muhim voqea edi. Qasamyod 1789-yil 20-iyunda boʻlib oʻtgan General Estates yigʻilishida ishtirok eta olmagan 577 aʼzodan 576 nafari tomonidan imzolangan vaʼda edi.</p>
+  <p>Tennisning o'rta asrlardagi shakli haqiqiy tennis deb ataladi, bu o'yin uch asr davomida paydo boʻlgan, oldingi 12-asrda Fransiyada to'pni yalang qo'l bilan, keyin esa qo'lqop bilan urishni o'z ichiga olgan to'p o'yinidan.[11][12] 16-asrga kelib, qo'lqop raketkaga aylandi, o'yin yopiq o'yin maydoniga o'tdi va qoidalar barqarorlashdi. Haqiqiy tennis Yevropada qirollik oilasi bo'ylab mashhurlikka erishdi va 16-asrda o'zining eng yuqori cho'qqisiga chiqdi.</p>
+  <p>Angliyaga qirollik qiziqishi Genrix V (1413–22) bilan boshlangan. Genrix VIII (1509–47) yosh monarx sifatida eng katta ta'sir ko'rsatdi; 1530- yilda o'zi qurgan kortda Gempton sudida o'yinni zavq bilan o'ynadi. Uning ikkinchi rafiqasi Ann Boleyn hibsga olinganida oʻyin tomosha qilgan va uning qatl etilgani haqidagi xabar yetib kelganida Genri oʻynagan deb ishoniladi. Jeyms I davrida (1603—25) Londonda 14 ta tennis kort bor edi.</p>
+<h4>Tennis tarixi</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/PWM6v7XLyeg"
+  title="The history of tennis" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+  `
+        },
+  {
+    id: "t2",
+    title: "Tennis o‘rganish qoidalari",
+    img: "https://cdn.britannica.com/88/4388-050-E2EB4ACE/area-tennis-alleys-doubles.jpg",
+    short: "Boshlovchilar uchun tennis o‘ynash asosiy qoidalari va zarba texnikalari.",
+    long: `<h4>Tennisni o‘rganish qoidalari</h4>
+           <ul>
+             <li><strong>Asosiy zarbalar:</strong> Forehand, backhand, serve, volley.</li>
+             <li><strong>Skoring tizimi:</strong> 15–30–40–Game.</li>
+             <li><strong>Xavfsizlik:</strong> Kortda har doim to‘g‘ri poyabzal va kiyimda bo‘lish kerak.</li>
+             <li><strong>Trening:</strong> Har kuni 15–30 daqiqa zarbalarni takrorlash texnikani mustahkamlaydi.</li>
+           </ul>
+           <p>O‘rganishni soddaroq qilish uchun o‘z darajangizga mos kort tanlang va professional murabbiy bilan mashq qiling.</p>
+           <p>Tennis, launtennis (inglizcha: lawn — „oʻtloq“, „maysazor“; tennis terminining kelib chiqishi toʻgʻrisida bir necha taxmin bor: fransuzcha: tenez — „mana, ol“; inglizcha: tens — „oʻnlik“, chunki oʻrta asrlarda tennisga oʻxshash oʻyinni besh kishidan, jami oʻn kishi oʻynagan; inglizcha: tenia — „rishta“; toʻpni tortilgan ipdan oshirib oʻynalgani uchun) — ikki kishi yoki ikki kishilik ikki guruh orasida oʻynaladigan sport oʻyinidir. Koptokning diametri 6,35—6,67 sm, ogʻirligi 56,7 g. Yogʻoch, yengil metall yoki plastmassadan har xil oʻlchamda tayyorlangan raketkalar ogʻirligi 255—400 g. Oʻyin kortning orqa chizigʻidan raqibning toʻrga yaqin maydonchasiga koptokni xatosiz uzatish bilan boshlanadi. Koptok maydonga tegib sakragandan keyin raqib uni qaytaradi (oʻyin davomida xam koptokni ikkinchi sakragandan keyin olishga ruxsat etilmaydi, faqat ikkinchi zarbadan boshlab koptokni kortga tushirmasdan ham qaytarish mumkin). Geymda hisob 15:0,30:0,40:0 va hokazo tarzda yuritiladi, agar 40:40 hisobi — „teng“ qayd etilsa, keyingi ochkoni yutgan „koʻp“, yutqizgan „kam“ boʻladi. „Koʻp“dan keyin ochkoni yutgan geymni ham yutadi. Setda olti geym (6,0…6:4) yutish lozim, bordiyu hisob 6:5 boʻlsa, oʻyin davom ettiriladi. 12 geymdan keyin hisob 7:5 boʻlsa, gʻolib aniklanadi. Agar 6:6 hisobi qayd etilsa, taybreyk (inglizcha: tiebreak) oʻynaladi. Taybreykda gʻolib chiqish uchun 7 ochko toʻplash zarur, agar hisob 7:6 boʻlib qolsa, oʻyin qaysidir tomonning ikki ochko oʻzib ketishigacha davom etadi. Erkaklar oʻyinida eng koʻp setlar miqdori — 5, ayollarda —3 ta. Tennis musobaqalari yakkalik, juftlik va aralash (bir erkak va bir ayol) tarzida tashkil qilinadi.</p>
+           <p>Tennisga oʻxshash oʻyinlar dastlab Misrning Tinis (Tanis) shahrida paydo boʻlgan degan taxmin ham mavjud. Bu oʻyin 13— 14-asrlarda Italiya, Fransiya, Angliyada ommalashdi. Fransiyada rohiblar 5 tadan boʻlib kaftlarida tennisga oʻxshash oʻyin oʻynashgan. 16-asrdan boshlab oʻyinda dastlabki raketkalar qoʻllandi. Zamonaviy tennis qoidalarini angliyalik Volter Uingfild ishlab chiqqan (1874). Shu qoidalar asosida „Uimbldon“ turniri (Angliya) 1877-yildan, AQSH ochiq chempionata 1881-yildan, „Rollan Garros“ turniri (Fransiya) 1891-yildan, Avstraliya ochiq chempionata 1905-yildan oʻtkazilib kelinadi.</p>
+<h4>Tennis qoidalari</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/jrhM3k84YJU"
+  title="The rules of tennis Explained" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+           
+           `
+  },
+  {
+    id: "t3",
+    title: "O'zbekiston tennischilari: ",
+    img: "https://data.daryo.uz/media/cache/2015/08/Farrux-680x455-680x455.jpg",
+    short: "<h4>Farrux Do'stov</h4>",
+    long: `<h4>O'zbekistonning mashhur tennischilari:</h4>",
+
+<p><strong>Farrux Do'stov</strong></p>
+<p>2003-yilda Do‘stov professional tennis faoliyatini boshladi, o‘sha yilning oxirida u ikki marta ITF Futures toifasidagi turnirlarning juftlik bahslarida finalga chiqadi. 2003-yilning kuzida Meranoda (Italiya) Farrux ilk bor yakkalik bahslarida “fyuchers”ga chiqadi va u yerda shu darajadagi faoliyatidagi ilk chempionlik unvonini qo‘lga kiritadi. 2006-yil iyul oyida Penzada u  ATP Challenger Jahon turiga tegishli yuqori darajadagi turnirda g‘alaba qozonishga muvaffaq bo‘ladi va 2010-yilda juftlik bahslarida shuni takrorlaydi. Umuman olganda, Do‘stov yakkalik bahslarida beshta va juftlik bahslarida to‘rtta (ulardan uchtasi 2013-yilda) “Chellenjer” unvoniga ega. Do‘stov deyarli  ATP-tur turnirlarida ishtirok etmaydi va "Katta dubulg‘a" turnirlarida u bir marta ham saralash bosqichidan o‘ta olmagan. U 2015-yil boshida Vrotslavda yana bir Challengerni yutib, reytingdagi eng yaxshi o‘rni – 98-qatorda turishi bo‘lgan, biroq keyinchalik natijalar pasayib ketdi va Do‘stov reytingning ikkinchi yuzligi o‘rtalarida yakunladi va 2016-yil oxiriga kelib u beshinchi yuzga tushib ketadi; u AQSH ochiq chempionatining  saralash bosqichida kaftidan jarohat olib, o‘sha mavsumni yakunlay olmadi.</p>
+
+<p>Kamtarona shaxsiy muvaffaqiyatlariga qaramay Farrux Do‘stov O‘zbekistonning eng kuchli tennischilaridan biri va o‘z mamlakati terma jamoasi tarkibida Devis Kubogida muntazam ishtirok etib keladi. 2005-yildan buyon O‘zbekiston terma jamoasi 21 matchda 40 ga yaqin o‘yin o‘tkazib, yakkalik bahslarida o‘nta, juftlik bahslarida yettita g‘alabaga erishadi. Do‘stov odatda milliy terma jamoa bilan birgalikda I Osiyo-Okean guruhida o‘ynagan, lekin ikki marta (2009—  2012-yillarda) unga o‘zbek tennisi bo‘lgan Devis kubogining eng yuqori pog‘onasi bo‘lgan Jahon guruhining pley-off bosqichiga chiqishga yordam bergan, o‘zbek tennischilari serblar va qozoqlarga imkoniyatni boy berishadi. Do‘stovning O‘zbekiston milliy terma jamoasidagi uzoq yillik chiqishlari o‘z terma jamoalarida 20 va undan ortiq matchda maydonga tushgan tennischilarga beriladigan “Sodiqlik uchun” (inglizcha: Commitment Award ) ITF laureat unvoni olishga imkon beradi. O‘zbekistonda ushbu mukofotning boshqa sovrindorlari Denis Istomin va Oleg Ogorodovlardir. Farrux Do‘stov 2010-yilgi Osiyo o‘yinlarida O‘zbekiston terma jamoasida ham maydonga tushgan edi, biroq u kortga chiqa olmagan. To‘rt yildan so‘ng Inchxeondagi Osiyo o‘yinlarida O‘zbekiston terma jamoasi qatorida maydonga tushib, bronza medallarini qo‘lga kiritadi.</p>
+
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/N1Po_0M9vv4"
+  title="Farrux Do'stov" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+`
+  },
+    {
+    id: "t4",
+    title: "O'zbekiston tennischilari:",
+    img: "https://data.daryo.uz/media/2016/02/Arina-Folts.jpg",
+    short: "<h4>Arina Folts</h4>",
+    long: `<h4>O'zbekistonning mashhur tennischilari:</h4>
+
+<p><strong>Arina Folts</strong></p>
+<p>Arina 1997-yil 1-yanvarda Toshkent shahrida tug‘iladi[1] . 8 yoshidan boshlab tennis bilan shug‘ullangan. 2011-yilda Qarshi shahrida birinchi ITF turkumi turnirida ishtirok etadi[2]. 2013—2015-yillarda O‘zbekiston terma jamoasi tarkibida Federasiya Kubogida qatnashadi. 2014-yilda Arina Antaliyadagi (Turkiya) ITF turkumidagi musobaqalarda tennis bo‘yicha juftlik bahslarida g‘alaba qozonadi.</p>
+<p>2017-yilda Ashxobodda (Turkmaniston) o‘tkazilgan V  Osiyo o‘yinlarining jang san’ati va yopiq inshootlardagi tennisning aralash juftlik bahslarida Sanjar Fayziyev bilan birgalikda bronza medalini qo‘lga kiritadi. 2017-yilda Folts Hammametda (Tunis)  bo‘lib o‘tgan ITF turkumidagi tennis bo‘yicha juftlik bahslari musobaqalarida g‘alabaga erishadi.</p>
+
+ `
+    },
+        {
+    id: "t5",
+    title: "O'zbekiston tennischilari:",
+    img: "https://www.gazeta.uz/media/img/2017/01/tBz0em14849875769814_l.jpg",
+    short: "<h4>Denis Istomin</h4>",
+    long: `<h4>O'zbekistonning mashhur tennischilari:</h4>
+
+<p><strong>Denis Istomin</strong></p>
+<p>Denis Olegovich Istomin (1986-yil 7-sentyabrda tugʻilgan) – oʻzbek professional tennischisi . U ikkita yakkalik chempionligini qoʻlga kiritdi[4][5] va 2012-yil avgust oyida yakkalik musobaqalari boʻyicha jahon reytingida 33-oʻrinni egalladi. 2017 yilning yanvarida u Avstraliya ochiq chempionatining ikkinchi bosqichida amaldagi chempion Novak Jokovichni magʻlub etgandi[6]. Denis Istomin yosh tennischimiz Amir Milushevga qarshi koʻrgazmali xayrlashuv uchrashuvini Xumo Arenada oʻtkazib oʻz professional faoliyatini yakunladi</p>
+<p>Denis Istomin Orenburgda rossiyalik ota-onalar Oleg va Klaudiya Istominlar oilasida tugʻilgan. Denis 3 oylik boʻlganida otasi oilani Toshkentga, Oʻzbekistonga koʻchirdi. Denisga onasi murabbiylik qiladi, uni sportga yoshligidan boshlab qiziqtira boshlaydi.[8] 2001-yilda musobaqaga ketayotganda avtohalokat natijasida olingan jarohatlar Istominni 2 yil tennisdan uzoqlashtirgan, shifokorlar dastlab u hech qachon raketka tutmasligini aytishgan. Shunga qaramay, Istomin 2003 yil aprel oyidan yana mashgʻulotlarga qaytadi</p>
+
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/aahYBpBt44A"
+  title="Denis Istomin" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+ `
+    },
+  {
+    id: "t6",
+    title: "Tennis o‘yinlarini o‘rganish va chempionatlar videolari",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvmL1qzNVch7NjFcLuyRySWbSZtLWKih1aDg&s",
+    short: "Tennis o‘yinlari, o‘rganish mashg‘ulotlari va chempionat videolari.",
+    long: `<h4>Video materiallar</h4>
+    
+<h4>Ikkitalik qizlar chempionati</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/S_8t9nQ3-QY"
+  title="Ikkitalik chempionat" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+  
+<h4>Denis Istomin Australia Open 2019</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/6mnxYx7ynd4"
+  title="Denis Istomin v Roger Federer" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+  
+<h4>Britaniya va O‘zbekiston chempionship</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/Sip_q8MsoqE"
+  title="Fayziyev / Istomin" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+  
+    `
+  }
+],
+
+"Alpinistlik" : [
+  {
+    id: "a1",
+    title: "Mashhur alpinistlar",
+    img: "https://himalayan-masters.com/wp-content/uploads/2025/08/Sir-Chris-Bonington-one-of-the-most-famous-mountain-climbers-and-a-writer-posing-with-his-expedition-team-while-holding-rope.webp",
+    short: "Dunyo miqyosida mashhur bo‘lgan alpinistlar haqida ma’lumot.",
+    long: `<h4>Mashhur alpinistlar</h4>
+           <p>Alpinistlik tarixida ko‘plab jasur odamlar o‘z izini qoldirgan. Ular orasida eng mashhurlari:</p>
+           <ul>
+             <li><strong>Reinhold Messner</strong> — dunyoda birinchi bo‘lib 14 ta 8 000 metrdan baland cho‘qqilarni zabt etgan alpinist. :contentReference[oaicite:1]{index=1}</li>
+             <p>Reynxold Andreas Messner ( nemischa: [ˈʁaɪnhɔlt ˈmɛsnɐ] ; 1944-yil 17-sentyabrda tugʻilgan) italiyalik alpinist , tadqiqotchi va yozuvchi, nemis tilida soʻzlashuvchi Janubiy Tirol viloyatidan . U Everestga birinchi yakka chiqishni va Piter Xabeler bilan birgalikda Everestga qo'shimcha kislorodsiz birinchi ko'tarilishni amalga oshirdi. U 14 sakkiz ming kishining barchasini qo'shimcha kislorodsiz ko'targan birinchi odam edi . Messner birinchi bo'lib Antarktida va Grenlandiyani na qor avtomobillari, na it chanalari [ 1 ] bilan kesib o'tgan va Gobi cho'lini ham yolg'iz o'tgan. [ 2 ] U barcha davrlarning eng buyuk alpinisti hisoblanadi. </p>
+            <p>1999 yildan 2004 yilgacha Messner Shimoliy-Sharqiy Italiya bo'yicha Yevropa parlamenti a'zosi , Yashillar federatsiyasi a'zosi sifatida ishlagan .
+
+Messner o'zining alpinist va tadqiqotchi sifatidagi tajribasi haqida 80 dan ortiq kitoblarni nashr etgan. 2010 yilda u umr bo'yi muvaffaqiyat uchun 2- Piolet d'Or mukofotini oldi. 2018 yilda u Kshishtof Velicki bilan birgalikda sport nominatsiyasida Asturiya malikasi mukofotini oldi .</p>
+             <li><strong>Sir Edmund Hillary</strong> — 1953-yilda Mount Everest (8 848 m) cho‘qqisiga chiqqan birinchi insonlardan biri. :contentReference[oaicite:3]{index=3}</li>
+             <p>Edmund Persival Hillary (1919-yil 20-iyulda tugʻilgan, 2008-yil 11-yanvarda vafot etgan) yangi zelandiyalik alpinist va tadqiqotchi edi. U Sherpa yoʻlboshchisi Tenzing Norgay bilan Everest togʻiga birinchi boʻlib koʻtarilgan odamlar edi. Ular 1953-yil 29 mayda choʻqqiga chiqdilar. Everest togʻi Yerdagi eng baland tog'dir. Oʻsmirlik yillarida Hillary Oklend grammatika maktabida oʻqigan.
+
+Edmund Hillaryning shon-shuhrati Nepaldagi Everest togʻini zabt etgan dunyodagi birinchi yangi zelandiyalik boʻlishi natijasida paydo boʻldi. Portreti, besh dollarlik Yeni Zelanda banknotu ustida joylashgan. Shuningdek, u Everest togʻidan keyin yana oʻnta tog'ga chiqdi, ularning barchasi Himoloyda.</p>
+             <li><strong>Jerzy Kukuczka</strong> — Polshalik afsona alpinist, ekstremal sharoitlarda cho‘qqilarni zabt etgan. (Qo‘shimcha manbalar bilan tekshirilishi mumkin.)</li>
+             <p>Józef Jerzy Kukuczka ( polyakcha: [ˈju.zɛf ˈjɛ.ʐɨ kuˈkut͡ʂ.ka] ; 1948-yil 24-mart – 1989-yil 24-oktabr) polshalik alpinist boʻlib , tarixdagi eng yirik baland alpinistlardan biri hisoblangan. [ 2 ] [ 3 ] [ 4 ] 1987 yilda u ( Reynxold Messnerdan keyin) dunyodagi barcha 14 sakkiz ming kishini zabt etgan ikkinchi odam bo'ldi , bu "Himoloy toji" sifatida tanilgan. U bu muvaffaqiyatni sakkiz yildan kamroq vaqt ichida amalga oshirdi va Lxotsedan tashqari hammaga yangi yo'llar bilan yoki qishda ko'tarildi. U bir qishda ikki sakkiz minglik balandlikka ko'tarilgan yagona odam bo'lib, Cho Oyu , Kangchenjunga va Annapurna cho'qqilariga chiqishlari birinchi qishki cho'qqilar edi. [ 5 ] [ 6 ] Uning 1986 yilda Tadeush Piotrovski bilan alp uslubida K2 cho'qqisiga chiqishi hozirda Polsha chizig'i sifatida tanilgan. [ 7 ] O'shandan beri boshqa alpinistlar marshrutdan foydalanib ko'tarilishga urinmagan.</p>
+             <p>Reynxold Messner , Kukuczka barcha 14 sakkiz minglikni tugatganini eshitib, "Siz ikkinchi emassiz, siz buyuksiz" deb yozgan. [ 8 ] Bu chiziq Kukuchka kitobining epigrafi sifatida qayta ishlab chiqarilgan va polyakcha tarjimasi uning 2021 yilda nashr etilgan tarjimai holi sarlavhasini tashkil qiladi. [ 9 ] [ 10 ] U 1989 yilda Lxotsening janubiy yuziga chiqishga urinayotganda vafot etgan.</p>
+             <li><strong>Lynn Hill</strong> — Ayollar orasida mashhur toqqa chiqish sportchisi, ayniqsa devor yuzalari (rock faces) bo‘yicha katta yutuqlarga erishgan. :contentReference[oaicite:4]{index=4}</li>
+           <p>Karolin Mari Xill (1961 yil 3 yanvarda tug'ilgan) [ 2 ] - amerikalik tosh alpinist . 1980-yillarning oxiri va 1990-yillarning boshlarida dunyodagi yetakchi alpinistlar , anʼanaviy alpinistlar (ayniqsa katta devor alpinistlari ), sport alpinistlari va toshboʻronchilardan biri sifatida keng eʼtirof etilgan boʻlib , u Yosemitdagi El - Kapitan vodiysidagi Burunning qiyin tekis qoya yuziga birinchi erkin koʻtarilishni amalga oshirganligi bilan mashhur . U dunyodagi eng yaxshi ayol alpinistlardan biri va sport tarixidagi eng yaxshi alpinistlardan biri sifatida tasvirlangan . [ 3 ] [ 4 ] [ 5 ] Xill tarixda 5.12d (  7c), 5.13a  (7c+) va 5.14a  (8b+) gradusli sport toqqa chiqish marshruti boʻyicha qizil nuqta qoʻygan birinchi ayol boʻldi. [ 6 ] Ayollar uchun tepalik shaklidagi tosh ko'tarilish va jamoatchilik vakili bo'ldi, bu uning yanada mashhur bo'lishiga yordam berdi va jinsiy tenglik uchun bahslashdi. Xill teleko'rsatuvlar va hujjatli filmlarda chiqish va avtobiografiya yozish orqali toqqa chiqishni e'lon qildi, " Bepul toqqa chiqish: Vertikal dunyoda mening hayotim" .</p>
+           <p>Xill hayotining boshida gimnastikachi bo'lgan, og'irlik ko'tarish bo'yicha jahon rekordini deyarli yangilagan va raqobatbardosh yugurgan. U yoshligida toqqa chiqishga kirishdi, bu faoliyatga tabiiy moyilligini ko'rsatdi va Janubiy Kaliforniyadagi alpinistlar hamjamiyatining va Yosemit vodiysidagi 4-lagerning bir qismiga aylandi. U 1980-yillarning boshlarida Qo'shma Shtatlar bo'ylab sayohat qilib, tobora qiyinlashib borayotgan marshrutlarni bosib o'tdi va birinchi ayollar va birinchi ko'tarilishlar bo'yicha rekord o'rnatdi. 1986 yildan 1992 yilgacha Xill dunyodagi eng zo'r alpinistlardan biri bo'lib , o'ttizdan ortiq xalqaro unvonlarni, shu jumladan Arco Rock Masterda beshta g'alabani qo'lga kiritdi . Bu etakchi ayol alpinistlar etakchi erkaklarni ushlagan davrga to'g'ri keldi. 1992 yilda Xill raqobatbardosh toqqa chiqishni tark etdi va an'anaviy toqqa chiqishga qaytdi . U o'zining eng katta toqqa chiqishi bo'lgan El Kapitan burniga erkin ko'tarilishni o'z oldiga qo'ydi . Xill ko'tarilishda davom etmoqda va shuhratparast cho'qqilarni olishni to'xtatmadi. 2013 yildan boshlab u Patagonia jihozlari va kiyim-kechak kompaniyasining homiysi bo'lgan va toqqa chiqish kurslarini taklif qiladigan kichik biznesga ega edi.</p>
+
+             </ul>`
+  },
+  {
+    id: "a2",
+    title: "Alpinistlar qoidalari",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl02hscwO2vntGx3v9q0ZYiHgnsiDy5kx8IQ&s",
+    short: "Tog‘ga chiqishda amal qilinishi zarur bo‘lgan xavfsizlik va axloq qoidalari.",
+    long: `<h4>Alpinistlar uchun asosiy qoidalar</h4>
+           <p>International Climbing and Mountaineering Federation (UIAA) kabi tashkilotlar tomonidan tog‘ga chiqishning xavfsizligi haqida tavsiyalar berilgan. :contentReference[oaicite:6]{index=6}</p>
+           <ol>
+             <li><strong>Xavfsizlik birinchi o‘rinda.</strong> Har bir chiqishdan oldin ob-havo, yo‘l, jihozlar va jamoa holatini sinchiklab tekshirish zarur. :contentReference[oaicite:7]{index=7}</li>
+             <li><strong>Jamoaviy harakat.</strong> Tog‘ga chiqishda mustaqil, yolg‘iz harakat qilishdan ko‘ra, jamoa bilan bo‘lish xavfsizroq. :contentReference[oaicite:8]{index=8}</li>
+             <li><strong>Tabiatni asrash.</strong> Ekosistemaga zarar yetkazmaslik, axlat tashlamaslik — tog‘ sportida muhim axloqiy jihatlar hisoblanadi. :contentReference[oaicite:9]{index=9}</li>
+             <li><strong>To‘g‘ri jihozlar:</strong> Arqon, karabiner, kask, maxsus etik-botinka, muz-shiling (ice axe), muz bolg‘asi (ice hammer) va boshqa mos jihozlar kerak bo‘ladi. :contentReference[oaicite:10]{index=10}</li>
+             <li><strong>Favqulodda yordam va chiqishni rejalashtirish:</strong> Keng tarqalgan usul — “Naismith’s rule” kabi qoida yordamida marshrutni belgilash. :contentReference[oaicite:11]{index=11}</li>
+           </ol>
+           <p>Alpinizm (Alp togʻi nomidan) , sport turi, turli murakkab toʻsiqlardan oʻtib togʻ choʻqqilariga koʻtarilish. Alpinizm uch sinfdan — traverslar (dovon oshish, togʻ tizmalari va etaklaridan oʻtish), murakkab chiqish (tik togʻlarga chiqish) va baland togʻlarga koʻtarilishdan iborat. Alpinizm sport turi boʻlibgina qolmay, kam oʻrganilgan togʻlarni ilmiy tadqiq etishga ham xizmat qiladi. Alpinizm tarixi 1786-yildan boshlanadi: oʻshanda Shveysariyalik J. Balma va M. Pakkar Alp togʻining Monblan choʻqqisiga koʻtarilgan edilar. Alpinizm Markaziy Yevropadan boshqa oʻlkalarga, shu jumladan Osiyoga tarqaldi. Alpinistlar birin-ketin Kavkaz, Tyaninan, Pomir, Oltoy togʻlarini zabt etdilar. XIX asrning oxirida Turkiston harbiy topograflari Chimyon togʻiga — 3309 m balandlikka koʻtarildilar. 20-yillarda Oʻrta Osiyo davlat untida, Toshkent telegrafi, aloqa texnikumi va boshqa joylarda alpinizm seksiyalari tashkil qilindi. 1938-yil Oʻzbekistonda alpiniada oʻtkazildi, uning 60 qatnashchisi Pskom togʻining 8 ta choʻqqisini zabt etdi. 1970-1980-yillarda Oʻzbekistonda 1,500 ga yaqin kishi alpinizm bilan shugʻullandi.</p>
+           <p>Alpinizmning ommalashuvi va sportchilarning shuhrat qozonishida V. Abalakov, V. Rasek, V. Elchibekovlarning xizmati katta. Keyingi paytda Toshkent shahri, Toshkent, Fargʻona, Namangan, Samarqand, Navoiy viloyatlarida alpinizmga eʼtibor kuchaydi. Birgina Chimyonda oʻtkazilgan alpiniadada 1,000 dan ortiq sportchi qatnashdi. Dunyodagi eng baland Everest (Jomolungma) choʻqqisi (Himolay togʻida balandligi 8848 m)ni zabt etish alpinistlarning ezgu orzusi hisoblanadi. Yangi Zelandiyalik Edmund Hillary va sherp Norgey Tensing 1953-yil unga birinchi marta koʻtarilganlar. Oʻzbekistonda Everestni zabt etuvchi alpinistlar guruhi tuzildi. Bu guruh 1998-yil mayda choʻqqiga chiqdi. 22-may kuni Rustam Rajabov birinchi boʻlib Everestni zabt etdi va u yerga Oʻzbekiston davlat bayrogʻini qadadi. Uning ketidan Oleg Grigorev, Sergey Sokolov, Xanif Balmagambetov, Svetlana Baskakova, Ilyos Tuxvatullin, Andrey Fyodorov, Marat Usayev, Roman Mats, Andrey Zaikin, Aleksey Dokukin choʻqqiga koʻtarildilar (ekspeditsiya rahbari Anatoliy Shabanov). 1977-yil alpinistlarimiz Markaziy Tyanshanning „Xontangri“ (7010 m) va „Gʻalaba“ (7439 m) choʻqqisini zabt etgandilar.</p>
+
+           `
+  },
+  {
+    id: "a3",
+    title: "Alpinistlar uchun maxsus joylar",
+    img: "https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg",
+    short: "Dunyoning eng mashhur tog‘ va cho‘qqilari haqida.",
+    long: `<h4>Alpinistlar uchun mashhur joylar</h4>
+           <ul>
+             <li><strong>Everest (Nepal)</strong> — 8 848 m, dunyodagi eng baland cho‘qqi. :contentReference[oaicite:12]{index=12}</li>
+             <p>Balandligi 8848,86 metr Zamini kembriygacha vujudga kelgan gneys va granitlardan, 7000 m dan yuqori qismi mezozoyning kristalli ohaktosh va slanetslaridan tarkib topgan. Shakli piramidasimon. Togʻ tepasidan atrofga 5000 m balandlikkacha muzliklar oqib tushgan. Janubiy yon bagʻri tik boʻlgani uchun bu yerda qor turmaydi. Jomolungma choʻqqisiga 1953-yilning 29-mayida J.Xant boshliq ingliz ekspeditsiyasi aʼzolari — nepallik Tensing va yangizelandiyalik E.Xillari chiqib yetdilar. Ayollardan birinchi boʻlib yaponiyalik alpinist Yu.Tabey (1976) chiqqan. 1998-yilning 22-mayida 11 kishidan iborat Oʻzbekiston alpinistlari Jomolungma choʻqqisini zabt etdilar. 2020-yil dekabr oyida yangi oʻlchov natijalari eʼlon qilindi va unga koʻra Everest choʻqqisi 86 satimetr balandroq ekan va 8848,86metr deb eʼlon qilindi</p>
+             <p>Everest — bu togʻning Evropadagi nomi, uni uzoq vaqtdan beri mahalliy aholi, tibetliklar, Chomolungma deb atashgan. Bu ism "hayotning ilohiy onasi" deb tarjima qilingan. Togʻni janubdan kuzatgan nepalliklar uni "Xudolarning onasi" deb atashgan, bu "Sagarmatha" ga oʻxshaydi. "Everest" nomi togʻga ingliz geodezikchisi Jorj Everest nomi bilan berilgan.
+
+19-asrning o'rtalariga qadar tog'ning balandligi haqida aniq ma'lumotlar yo'q edi, shuning uchun uning eng baland cho'qqisi nomi norasmiy edi. 1852-yilda hind matematigi bir qator hisob-kitoblarni amalga oshirdi va Everest eng ko'p ekanligini aniqladi. baland tog' yerda.
+
+Everest ikki plastinka — Hindustan va Evroosiyo toʻqnashuvi natijasida paydo boʻlgan. Hind plitasi Tibetdagi qobiq ostiga tushib, mantiya yuqoriga koʻtarildi, natijada tektonik plitalarning sekin harakati tufayli hali ham oʻsishda davom etayotgan katta togʻ tizmasi paydo boʻldi.</p>
+
+             <li><strong>K2 (Pokiston–Xitoy)</strong> — juda xavfli, ammo alpinistlar uchun jozibali cho‘qqi.</li>
+             <p>Chogori, GoduinOsten, Dapsang — Qoraqurum togʻlaridagi eng baland choʻqqi (8611 m). Balandligi boʻyicha Jomolungmadan keyin 2-oʻrinda. Granit va gneys jinslardan tuzilgan. Yirik muzliklar (Baltoro va boshqalar) bor. Ch.ga ilk bor 1954-yilda italiyalik alpinistlar L.Lachadelli va A.Kompanoni chiqqan.</p>
+
+             <li><strong>Mont Blanc (Fransiya)</strong> — Yevropaning mashhur tog‘laridan biri.</li>
+             <p>Mont Blan ( Buyuk Britaniya : / ˌ m ɒ̃ ˈ b l ɒ̃ ( k )/ , AQSH : / ˌ m ɒ n ( t ) ˈ b l ɑː ŋ k / [ a ] ) — Alp tog‘laridagi tog‘ , dengiz sathidan 4805,56 fut (15,59 m ) balandlikda joylashgan . Franko-Italiya chegarasida joylashgan . [ 3 ] Bu Yevropadagi Kavkaz togʻlaridan tashqaridagi eng baland togʻ , Yevropadagi ikkinchi eng koʻzga koʻringan togʻ ( Rossiyadagi Elbrus togʻidan keyin) va dunyodagi eng koʻzga koʻringan togʻlar soni boʻyicha 11-oʻrinda turadi. </p>
+             <p>Tog' o'z nomini Frantsiya, Italiya va Shveytsariyaning bir qismini egallagan Mont Blan massiviga beradi. Mont Blan cho'qqisi Italiyadagi Ferret va Veni vodiylari va Frantsiyadagi Montjoie va Arve vodiylari orasidagi suv havzasi chizig'ida joylashgan . Sammit hududiga egalik qilish uzoq vaqtdan beri Fransiya va Italiya o‘rtasida bahsli bo‘lib kelgan.</p>
+             <p>Mont Blanc massivi piyoda yurish , toqqa chiqish va izda yugurish va chang'i va snoubord kabi qishki sport turlari kabi ochiq havoda mashg'ulotlar uchun mashhur . Mont Blan cho'qqisiga chiqishning eng mashhur yo'li bu Gouter marshruti bo'lib , u odatda ikki kun davom etadi.
+
+Mont Blanni o'rab turgan uchta shahar va ularning kommunalari Italiyaning Aosta vodiysidagi Kurmayeur ; va Sen-Jervais-les-Bains va Frantsiyaning Yuqori Savoya shahridagi Chamonix . Oxirgi shahar birinchi qishki Olimpiya o'yinlari o'tkaziladigan joy edi . Teleferik ko'tarilib, Col du Géant orqali Courmayeurdan Chamonixgacha bo'lgan tog' tizmasini kesib o'tadi . 11,6 km ( 7+1 ⁄ 4  mil)1957-1965 yillarda qurilgan Mont Blan tunnel tog' ostidan o'tadi va asosiy transalp transport yo'nalishi hisoblanadi.</p>
+
+             <li><strong>Tien Shan (O‘zbekiston, Qozog‘iston, Qirg‘iziston)</strong> — Markaziy Osiyodagi go‘zal tog‘ tizimlaridan biri.</li>
+             <p>Tyan -Shan , [ 1-eslatma ] , shuningdek , Tengri Tog [ 1 ] yoki Tengir-Too [ 2 ] nomi bilan ham tanilgan, Oʻrta Osiyodagi togʻ tizmalarining yirik tizimidir . Eng baland cho'qqisi Jengish Chokusu bo'lib , balandligi 7439 metr (24406 fut) bo'lib, Qirg'izistonda joylashgan. Uning eng past nuqtasi dengiz sathidan 154 m (505 fut) pastda joylashgan Turpan depressiyasida joylashgan </p>
+             <p>Tyan-Shan Tengrilikda muqaddas hisoblanadi . Uning ikkinchi eng baland cho'qqisi Xon Tengri nomi bilan tanilgan , uni "Ruhlar Rabbiysi" deb tarjima qilish mumkin. [ 4 ] 2013-yilgi Butunjahon merosi konferensiyasida Gʻarbiy Xitoyning Shinjon viloyatidagi Tyan-Shanning sharqiy qismi Butunjahon merosi roʻyxatiga kiritilgan . [ 5 ] Qirgʻiziston, Qozogʻiston va Oʻzbekistonning gʻarbiy qismi 2016-yilda roʻyxatga olingan edi</p>
+             <p>Tyan-Shanning eng baland cho'qqisi Qirg'iziston va Xitoy tomonidan taqsimlangan Jengish Chokusu (G'alaba cho'qqisi nomi bilan ham tanilgan). 7,439 metr (24,406 fut) balandlikda, bu Qirg'izistondagi eng baland nuqtadir . [ 3 ] Tyan-Shanning ikkinchi eng baland cho'qqisi Xon Tengri (Qirol Osmoni) Qozog'iston - Qirg'iziston - Xitoy uch nuqtasini bosib o'tadi va balandligi 7010 metr (23 000 fut) Qozog'istonning eng baland nuqtasidir . Alpinistlar ularni dunyodagi 7000 metrdan (23 000 fut) oshib ketadigan eng shimoliy cho'qqilar deb hisoblashadi.</p>
+
+             <li><strong>Pamir (Tojikiston–O‘zbekiston chegarasi)</strong> — yuqori cho‘qqilar va tajribali alpinistlar uchun mos manzil.</li>
+           <p>Pomir togʻlari Oʻrta Osiyo va Janubiy Osiyo oraligʻidagi togʻlar qatoridir . Ular boshqa taniqli tog'lar, xususan Tyan-Shan , Qorakoram , Kunlun , Hindukush va Himoloy tog' tizmalari bilan tutashgan joyda joylashgan . Ular dunyodagi eng baland tog'lar qatoriga kiradi .
+
+Pomir togʻlarining katta qismi Tojikistonning Togʻli Badaxshon viloyatida joylashgan . [ 1 ] Toʻrt davlatning chegara qismlarini [ 2 ] janubda, ular Afgʻonistonning Badaxshon viloyatidagi Vaxon yoʻlagi , Pokistonning Chitral va Gilgit-Baltiston viloyatlari boʻylab Hindukush togʻlari bilan chegaradosh . Shimolda ular Qirg'izistonning Oloy vodiysi bo'ylab Tyan- Shan tog'lariga qo'shiladi . Sharqda, ular Xitoyning Kongur Taghni o'z ichiga olgan qatorga cho'zilgan , "Sharqiy Pomir" da, [ 3 ] Kunlun tog'laridan Yarkand vodiysi bilan ajratilgan .</p>
+             </ul>
+           <p><em>Izoh:</em> Tog‘ sportining turli yo‘nalishlari (alpine climbing, ekspeditsion uslub va boshqalar) ayniqsa xavfli bo‘lishi mumkin — masalan «alpine style» uslubida kichik jamoa, kam jihoz bilan chiqiladi. :contentReference[oaicite:13]{index=13}</p>
+           <h4>Everest tog'ida navbat qanaqa? </h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/Fh-kHohMRe8"
+  title="Everest" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+           
+           `
+ 
+        },
+  {
+    id: "a4",
+    title: "Alpinistlar hayotidan videolar",
+    img: "https://media.istockphoto.com/id/462333703/photo/group-of-alpinists-on-their-way-to-the-elbrus.jpg?s=612x612&w=0&k=20&c=HHROCV4TGlsHesvjfcWek_1IU7xoezuh9ot4nbmBkOU=",
+    short: "Haqiqiy alpinistlarning hayoti, tayyorgarligi va sarguzashtlarini yorituvchi videolar.",
+    long: `<h4>Alpinistlar hayotidan videolar</h4>
+           <p>Quyidagi videolar orqali tog‘ hayoti, chiqish jarayonlari va ekstremal sharoitlarni ko‘rishingiz mumkin:</p>
+           <ul>
+          
+
+<h4>Alpinistlar hayoti</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/SRpVyzagXLQ"
+  title="Alpinistlar" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+
+<h4>K2 — dunyodagi eng xavfli tog'</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/cvFt2Xcuois"
+  title="Alpinistlar" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+<h4>Everest 2007 film</h4>
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/K_44HtRCq6o"
+  title="Alpinistlar" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+
+           </ul>`
+  },
+  {
+    id: "a5",
+    title: "Alpinistlar gruppalari",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVGT1KD4fQnra2pPEIXV111ZnmlbrxS4Shfw&s",
+    short: "O‘zbekistondagi alpinistlar va tog‘ klublari haqida ma’lumot.",
+    long: `<h4>O‘zbekistondagi alpinistlar guruhlari</h4>
+           <p>O‘zbekistonda ham alpinistlik faol rivojlanmoqda. Quyidagi guruhlar va tashkilotlar faoliyat yuritadi:</p>
+           <ul>
+             <li><strong>O‘zbekiston Alpinizm Federatsiyasi</strong> — rasmiy musobaqalar va ekspeditsiyalarni tashkil qiladi.</li>
+             <li><strong>Chimgan Climbing Club</strong> — Toshkent viloyatidagi faol klub, yangi boshlovchilar uchun darslar o‘tkazadi.</li>
+             <li><strong>Tien Shan Expeditions</strong> — xalqaro ekspeditsiyalar uyushtiruvchi guruh.</li>
+             <li><a href="https://t.me/alpinism_uz" target="_blank">Telegram: @alpinism_uz</a> — alpinistlar hamjamiyati (axborot, maslahat, treninglar).</li>
+           
+           <li> UIAA Xalqaro alpinistlar assosiasiyalari ittifoqi</li>
+           <p>Xalqaro alpinistlar assosiasiyalari ittifoqi (fransuzcha: Union Internationale des Associations d'Alpinisme — UIAA) — dunyoning 76 mamlakatidan 88 ta milliy alpinizm birlashma va tashkilotlari (federasiyalar, assosiasiyalar, klublar) bo‘lib, u butun dunyo bo‘ylab millionlab alpinistlarni jamlaydi. UIAAning bosh qarorgohi Bern shahrida (Shveysariya) joylashgan. Xalqaro alpinizm assosiasiyalari ittifoqi Xalqaro olimpiya qo‘mitasi tomonidan alpinizmning rasmiy tashkiloti sifatida tan olingan.</p>
+           <p>1997-yilda qoyaga chiqishga muhim avtonomiya berish va uni yanada rivojlantirish uchun zarur anjomlar bilan ta’minlash maqsadida Xalqaro alpinistlar assosiasiyalari ittifoqi (UIAA) tarkibida yangi tuzilma - Xalqaro qoyaga chiqish kengashi (ICC) shakllantirildi. 2006-yilda UIAA qoyaga ko‘tarilish sporti boshqaruvini to‘xtatish va bu sport turini boshqarish uchun mustaqil xalqaro federasiyani tashkil etishni qo‘llab-quvvatlashga qaror qildi. 2007-yil 27-yanvarda Frankfurtda (Germaniya) 68 ta federasiyalar tashkil etilgan Xalqaro qoyaga ko‘tarilish sport federasiyasi ( IFSC) tarkibiga kirdilar. Yangi xalqaro federasiyaning Farmon va Nizomi bir ovozdan qabul qilindi va federasiya o‘z faoliyatini boshladi.</p>
+           <p>Ittifoqni tashkil etuvchi milliy alpinistlar tashkilotlari soni muntazam ravishda ortib bormoqda va bugungi kunda ular 76 mamlakatdan 2,5 milliondan ortiq alpinistlarni, shuningdek, o‘n millionlab boshqa manfaatdor ishtirokchilarni ifodalovchi 88 tashkilotni o‘z ichiga oladi. Uyushma faoliyati a’zolik badallari hisobidan moliyalashtiriladi.</p>
+
+
+
+
+<h4>UIAA sayti</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/DEuhHMLrOQ0"
+  title="UIAA YouTube video" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+
+
+
+
+
+
+             </ul>
+           <p>Agar siz yangi boshlovchi bo‘lsangiz, eng avval mahalliy klub bilan bog‘lanish tavsiya etiladi.</p>`
+  }
+],
+/* --- KARATE BO‘LIMI KENGAYTIRILGAN VERSIYA --- */
+
+"Karate" : [
+  {
+    id: "k1",
+    title: "Karate tarixi va shakllanishi",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx0LAbW20NQoS6Vw94-vsE7VQQe9G2FfRu9A&s",
+    short: "Karatening paydo bo‘lishi, rivojlanish tarixi va shakllanishi — Wikipedia ma’lumotlari asosida.",
+    long: `<h4>Tarix va shakllanishi</h4>
+           <p>Karate Ryūkyū Qiroligi (hozirgi Okinava, Yaponiya) hududida paydo bo‘lgan jang sanʼati bo‘lib, Xitoy jang san’atlari “kung fu” va mahalliy “te” (手, qo‘l sanʼati) uslublari taʼsirida shakllangan. 1</p>
+           <p>1920-yillarda Okinavadan Yaponiya materigiga karate ilk bor keng tarqaldi. 2</p>
+           <p>Ushbu sanʼat keyinchalik turli maktablar (masalan, Shotokan, Wadō‑ryū, Kyokushin) shaklida rivojlandi. 6</p>
+           <p>Karate ( yánì ) ( / k ə ˈ r ɑː t i / ; yaponcha talaffuzi: [kaɾate] ⓘ ; Okinava talaffuzi: [kaɾati] ), shuningdek,karate-do( yánghínīn , Karate-dō )-Ryukyu qirolligidarivojlanganjang san'ati.mahalliy ryukyuan jang san'atlaridan(te( yī ), "qo'l" deb ataladi;tīXitoy jang san'atita'siri ostidarivojlangan. [ 1 ] [ 2 ] Zamonaviy karate birinchi navbatda zarba va zarbalardan foydalanadigan ajoyib san'at bo'lsa-da, an'anaviy karate mashg'ulotlaridauloqtirishvaqo'shma qulflashusullari ham qo'llaniladi. [ 3 ] Karate bilan shug'ullanuvchi kishikarate-kadeb ataladi .</p>
+           <p>1300-yillardan boshlab, Xitoyning ilk jang san'atkorlari Okinavaga o'zlarining texnikalarini olib kelishdi. Ryukyu qirolligi 1609 yilda yapon samuraylari tomonidan qo'g'irchoq davlatga aylantirilganiga qaramay , Ryukyu bosqinidan keyin uning Xitoy bilan madaniy aloqalari mustahkam bo'lib qoldi. [ 4 ] Samuraylar hukmronligi ostida ryukyuanlarga qilich koʻtarib yurish taqiqlanganligi sababli , yosh aristokratlar guruhlari qarshilik koʻrsatish shakli sifatida xitoylik va mahalliy jang sanʼati uslublarini birlashtirgan holda qurolsiz jang usullarini yaratdilar. [ 4 ] Trening o'z-o'zini tarbiyalashga urg'u berdi. [ 4 ] Jang sanʼatlarining bu aralashmasi kara-tehìnì , yaʼni “Xitoy qoʻli” deb tarjima qilingan. Dastlab, formalar, rangli kamarlar, reyting tizimlari yoki standartlashtirilgan uslublar yo'q edi. [ 4 ] Zamonaviy karate uchun zarur bo'lgan ko'plab elementlar aslida bir asr oldin kiritilgan. </p>
+           
+<h4>Karate tarixi</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/23ARJNmZ00w"
+  title="Fujian karate tarixi" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+           
+           `
+  },
+  {
+    id: "k2",
+    title: "Karate o‘rganish bosqichlari",
+    img: "https://www.wikihow.com/images/thumb/a/a2/Teach-Yourself-the-Basics-of-Karate-Step-10-Version-2.jpg/550px-nowatermark-Teach-Yourself-the-Basics-of-Karate-Step-10-Version-2.jpg",
+    short: "Karate mashg‘ulotlari bosqichlari, belbog‘ tizimi va o‘rganish jarayoni.",
+    long: `<h4>O‘rganish bosqichlari</h4>
+           <p>Karate sanʼatida o‘rganish jarayoni ko‘p bosqichli bo‘lib, Yaponiyada «守破離 (Shuhari)» tushunchasi qo‘llaniladi – o‘rganish, buzish, erkinlik degan ma’noda. 7</p>
+           <p>Asosiy bosqichlarga:</p>
+           <ol>
+             <li><strong>Kihon (важелar-texnikalar):</strong> To‘g‘ri holat, zarbalar, tarzlarni mashq qilish.</li>
+             <li><strong>Kata (формалар):</strong> Belgilangan harakatlar ketma-ketligi — muhim mashq shakli. 8</li>
+             <li><strong>Kumite (спарринг/boj):</strong> Raqib bilan jang maydonida nazoratli amaliyoti.</li>
+             <li><strong>Belbog‘ tizimi:</strong> Oq (kyu)dan qora (dan) belbog‘ga ko‘tarilish jarayoni. 9</li>
+           </ol>
+           <p>Har bosqichda intizom, takrorlash va nazorat muhimdir.</p>
+
+<h4>Karateni o'rganish</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/FQxa9Cj7KAE"
+  title="27 karate"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Karate o'rganish</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/sf5KRe-VUp8"
+  title="Karate o'rganamiz"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+           
+           `
+  },
+  {
+    id: "k3",
+    title: "Mashhur karate ustalari",
+    img: "https://shinjigenkan.ca/wp-content/uploads/2020/02/hanashiro-chibana-gusukuma-1024x533.jpg",
+    short: "Karate tarixidagi eng mashhur ustalar va ularning hissa qo‘shganlari — Wikipedia ma’lumotlari bilan.",
+    long: `<h4>Mashhur ustalar</h4>
+           <ul>
+             <li><strong>Gichin Funakoshi</strong> (1868-1957) — zamonaviy Shotokan karate asoschisi, “Karate-dō”ni jahon miqyosiga olib chiqqan shaxs. 11</li>
+             <li><strong>Ankō Itosu</strong> (1831-1915) — Okinavada zamonaviy karate texnikasini maktab shaklida rivojlantirgan ustoz. 13</li>
+             <li><strong>Hironori Ōtsuka</strong> (1892-1982) — Wadō-ryū karate yo‘nalishini yaratgan. 15</li>
+             <li><strong>Masutatsu Oyama</strong> — Kyokushin karate maktabini asoslagan ustoz. 17</li>
+           </ul>
+           
+
+<h4>Karate ustalari</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/kxcORAk9cDc"
+  title="Top 20 karate masters"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+
+<h4>Karate ustalari</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/K23jyhMpVxw"
+  title="Top 5 Shotokan Karate Masters"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+`
+  },
+  {
+    id: "k4",
+    title: "Karate videolari: o‘rganish va chempionatlar",
+    img: "https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_lg_2x/f_auto/primary/bitauaaqprdxa5h6wesa",
+    short: "Karate mashg‘ulotlari, darslari va chempionatlar — Wikipedia asosidagi ma’lumot va videolar.",
+    long: `
+           
+<h4>World Karate Championships 2012</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/w9kxtJpRmw4"
+  title="World Karate Championships 2012"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<h4>Karate ustalari</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/IOm9g6-EHys"
+  title="Cairo 2024"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe> 
+
+
+<h4>Karate ustalari</h4>
+<iframe width="100%" height="500" 
+  src="https://www.youtube.com/embed/DzeI9_SwXWI"
+  title="Karate National Championships 2019"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe> 
+           
+           `
+  }
+],
+
+}
+
+/* ====== UI yaratish va funksiyalar ====== */
+
+const mainOrder = ["Game development", "Doctor", "Chef", "Yoga", "English","Tennis", "Alpinistlik","Karate"];
+
+const icons = {
+  "Game development": "https://i.pinimg.com/236x/48/99/1f/48991f90e9a0eed6f972f7c310bdd3e0.jpg",
+  "Doctor": "https://www.shutterstock.com/image-vector/doctor-icon-stethoscope-nurse-logo-600nw-2481540341.jpg",
+  "Chef": "https://cdn.dribbble.com/userupload/18680020/file/original-2b9007baca4b13fbf57a55eb632e3c9a.png?resize=400x0",
+    "Yoga": "https://www.designmantic.com/logo-images/9056.png?company=Company%20Name&keyword=yoga&slogan=&verify=1",
+  "English": "https://www.shutterstock.com/image-vector/english-language-day-april-23-260nw-2272350425.jpg",
+  "Tennis": "https://media.istockphoto.com/id/1345493117/vector/tennis-racket-icon-stock-vector-tennis-logo-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=5KLZBhn5hIDSBM_Y5lS8fgeqA8bZW4AtpuXzx0VU9mg=",
+  "Alpinistlik": "https://img.freepik.com/premium-vector/mountain-climbing-logo_20448-52.jpg",
+  "Karate" : "https://i.pinimg.com/736x/64/d2/88/64d288b0cdcfcd90b697dfd4e55cc05d.jpg",
+
+};
+
+const mainCards = document.getElementById('mainCards');
+
+mainOrder.forEach(name => {
+  const c = document.createElement('div');
+  c.className = 'card';
+  c.innerHTML = `
+    <img src="${icons[name] || ''}" alt="${name}">
+    <h3>${name}</h3>
+    <p>${getShort(name)}</p>
+  `;
+  c.onclick = () => openSub(name);
+  mainCards.appendChild(c);
+});
+
+function getShort(name) {
+  const arr = CONTENT[name];
+  if (!arr) return 'Bo‘lim haqida ma’lumot yo‘q';
+  return arr[0].short || 'Bo‘lim';
+}
+
+const subSection = document.getElementById('subSection');
+const subTitle = document.getElementById('subTitle');
+const subGrid = document.getElementById('subGrid');
+const detailContent = document.getElementById('detailContent');
+const detailPanelTitle = document.querySelector('.detail-panel h3');
+const detailMeta = document.querySelector('.detail-panel .meta');
+
+function openSub(name){
+  subSection.style.display='block';
+  subTitle.innerText = `Bo'lim: ${name}`;
+  subGrid.innerHTML = '';
+  const arr = CONTENT[name] || [];
+  arr.forEach(item=>{
+    const s = document.createElement('div'); s.className='sub';
+    s.innerHTML = `<h4>${item.title}</h4><p>${item.short}</p>`;
+    s.onclick = ()=>showDetail(name,item.id);
+    s.onmouseover = ()=>previewInPanel(name,item.id);
+    subGrid.appendChild(s);
+  });
+  detailPanelTitle.innerText = `${name} — Tanlang`;
+  detailMeta.innerText = `Bu bo'limda ${arr.length} kichik bo'lim mavjud.`;
+  detailContent.innerHTML = `Kichik bo'limni bosing — batafsil ma'lumot modal oynada ochiladi yoki shu panelda ko'rsatiladi.`;
+  window.scrollTo({top: subSection.offsetTop - 18, behavior:'smooth'});
+}
+
+function closeSub(){
+  subSection.style.display='none';
+  detailPanelTitle.innerText='Tanlang — Kichik bo‘limni bosing';
+  detailMeta.innerText='Bu yerda tanlangan bo‘limning qisqacha meta maʼlumoti chiqadi';
+  detailContent.innerHTML='Masalan: batafsil retsept, mashq yoki operatsiya tavsifi shu yerda ko‘rinadi.';
+}
+
+/* Modal */
+const modal = document.getElementById('modal'), modalTitle = document.getElementById('modalTitle'), modalBody = document.getElementById('modalBody');
+
+function showDetail(section, id){
+  const list = CONTENT[section] || [];
+  const item = list.find(x=>x.id===id) || list.find(x=>x.title===id) || list[0];
+  if(!item) return;
+  modalTitle.innerText = `${section} — ${item.title}`;
+  modalBody.innerHTML = `
+    <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px">
+          <strong>Qisqacha:</strong><div style="color:var(--muted);margin-top:6px">${item.short}</div>
+        </div>
+        <div class="resource" style="margin-top:10px">
+          <strong>Rasm:</strong>
+          <img src="${item.img || icons[section]}" alt="${item.title}" class="detail-img">
+        </div>
+      </div>
+      <div style="width:360px;min-width:260px">
+      </div>
+    </div>
+    <div style="margin-top:12px">${item.long || ''}</div>
+  `;
+  modal.style.display='flex';
+}
+
+function closeModal(){ modal.style.display='none'; }
+window.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+
+function previewInPanel(section, id){
+  const list = CONTENT[section] || [];
+  const item = list.find(x=>x.id===id) || list[0];
+  if(!item) return;
+  detailPanelTitle.innerText = `${section} — ${item.title}`;
+  detailMeta.innerText = item.short;
+  detailContent.innerHTML = item.long || '<p>Ma\'lumot mavjud emas.</p>';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Default: Game development ochiq */
+openSub('Game development');
+
+</script>
+</body>
+</html>  
+
+
+
